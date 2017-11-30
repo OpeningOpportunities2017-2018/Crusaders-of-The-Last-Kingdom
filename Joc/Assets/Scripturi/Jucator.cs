@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jucator : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class Jucator : MonoBehaviour 
+{
+	void Start()
+	{
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+}
+public class Clasa
+{
+	string nume;
+	public List<Abilitate> abilitati = new List<Abilitate> ();
+	Clasa()
+	{
 		
 	}
+}
+public class Abilitate
+{
+	string nume;
 }

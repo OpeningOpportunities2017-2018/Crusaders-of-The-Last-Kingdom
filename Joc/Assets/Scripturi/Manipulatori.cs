@@ -8,14 +8,10 @@ public class Manipulatori : MonoBehaviour
 	public GameObject imagine,butondummy,text1;
 	public List<Slider> slidere = new List<Slider>();//Culorile se vor pune in ordinea rosu, verde si albastru
 	System.Random rand = new System.Random();
-	string textrand = "Numar aleator generat:{0}";
-	void Start () 
+	public string textrand = "Numar aleator generat: {0}";
+	void Start()
 	{
-		
-	}
-	void Update () 
-	{
-		
+		text1.GetComponent<Text> ().text = String.Format (textrand, 0);
 	}
 	public void ClickOnDummy()
 	{
@@ -23,11 +19,11 @@ public class Manipulatori : MonoBehaviour
 		SchimbaCuloare (imagine, culoare);
 		try
 		{
-			text1.GetComponent<Text>().text=String.Format(textrand,rand.Next(7,12));
+			text1.GetComponent<Text>().text=String.Format(textrand,GenerareNumarAleator(7,12));
 		}
-		catch 
+		catch(Exception e)
 		{
-			
+			Debug.Log (e.Message);
 		}
 	}
 	void SchimbaCuloare(GameObject obiect,Color culoare)//Merge daca imaginea nu face parte din UI (nu e randata cu Image, ci cu Sprite Renderer)
@@ -42,5 +38,9 @@ public class Manipulatori : MonoBehaviour
 		{
 			Debug.Log (e.Message);
 		}
+	}
+	int GenerareNumarAleator(int lim_inf,int lim_sup)
+	{
+		return rand.Next (lim_inf, lim_sup);
 	}
 }
