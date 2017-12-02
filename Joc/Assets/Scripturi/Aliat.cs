@@ -2,46 +2,79 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class Aliat : MonoBehaviour
+using UnityEngine.UI;
+public class Aliat:MonoBehaviour
 {
     GameObject nul;
+    Manipulatori manip;
     int viata, mana;
     string nume;
-    public void Constructor()
+    bool mort;
+    void Awake()
     {
-        viata = mana = 100;
-        nume = "Aliat";
         try
         {
+            nume="Aliat";
+            viata=mana=100;
+            mort=false;
             nul = GameObject.Find("Obiect nul");
+            manip = nul.GetComponent<Manipulatori>();
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             Debug.Log(e.Message);
         }
     }
-    void SetViata(int v)
+    public void SetViata(int v)
     {
-        viata = v;
+        this.viata = v;
     }
-    int GetViata()
+    public int GetViata()
     {
-        return viata;
+        return this.viata;
     }
-    void SetMana(int m)
+    public void SetMana(int m)
     {
-        mana = m;
+        this.mana = m;
     }
-    int GetMana()
+    public int GetMana()
     {
-        return mana;
+        return this.mana;
     }
-    void SetNume(string s)
+    public void SetNume(string s)
     {
         nume = s;
     }
-    string GetNume()
+    public string GetNume()
     {
-        return nume;
+        return this.nume;
+    }
+    public bool EsteMort()
+    {
+        return this.mort;
+    }
+    public void SeteazaMort(bool m)
+    {
+        this.mort = m;
+    }
+    void OnMouseOver()
+    {
+        if(!manip.statistici.activeInHierarchy)
+            manip.statistici.SetActive(true);
+            try   
+            {
+                manip.statistici.transform.GetChild(0).GetComponent<Text>().text = String.Format("Viata: {0}", this.viata);
+                manip.statistici.transform.GetChild(1).GetComponent<Text>().text = String.Format("Mana: {0}", this.mana);
+                manip.statistici.transform.GetChild(2).GetComponent<Text>().text = String.Format("Nume: {0}", this.nume);
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+    }
+    void OnMouseExit()
+    {
+        if (manip.statistici.activeInHierarchy)
+            manip.statistici.SetActive(false);
     }
 }

@@ -2,46 +2,79 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class Inamic : MonoBehaviour
+using UnityEngine.UI;
+public class Inamic:MonoBehaviour
 {
-    GameObject nul;
+    public GameObject nul;
+    Manipulatori manip;
     int viata, mana;
-    string nume;
-    public void Constructor()
+    public string nume;
+    public bool mort;
+    void Awake()
     {
-        viata = mana = 100;
-        nume = "Inamic";
         try
         {
+            nume="Inamic";
+            viata=mana=100;
+            mort=false;
             nul = GameObject.Find("Obiect nul");
+            manip = nul.GetComponent<Manipulatori>();
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
+    public void SetViata(int v)
+    {
+        this.viata = v;
+    }
+    public int GetViata()
+    {
+        return this.viata;
+    }
+    public void SetMana(int m)
+    {
+        this.mana = m;
+    }
+    public int GetMana()
+    {
+        return this.mana;
+    }
+    public void SetNume(string s)
+    {
+        nume = s;
+    }
+    public string GetNume()
+    {
+        return this.nume;
+    }
+    void OnMouseOver()
+    {
+        if(!manip.statistici.activeInHierarchy)
+            manip.statistici.SetActive(true);
+        try   
+        {
+            manip.statistici.transform.GetChild(0).GetComponent<Text>().text = String.Format("Viata: {0}", this.viata);
+            manip.statistici.transform.GetChild(1).GetComponent<Text>().text = String.Format("Mana: {0}", this.mana);
+            manip.statistici.transform.GetChild(2).GetComponent<Text>().text = String.Format("Nume: {0}", this.nume);
         }
         catch (Exception e)
         {
             Debug.Log(e.Message);
         }
     }
-    void SetViata(int v)
+    void OnMouseExit()
     {
-        viata = v;
+        if (manip.statistici.activeInHierarchy)
+            manip.statistici.SetActive(false);
     }
-    int GetViata()
+    public bool EsteMort()
     {
-        return viata;
+        return this.mort;
     }
-    void SetMana(int m)
+    public void SeteazaMort(bool m)
     {
-        mana = m;
-    }
-    int GetMana()
-    {
-        return mana;
-    }
-    void SetNume(string s)
-    {
-        nume = s;
-    }
-    string GetNume()
-    {
-        return nume;
+        this.mort = m;
     }
 }
