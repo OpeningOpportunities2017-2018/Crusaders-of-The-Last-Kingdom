@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-public class Inamic:MonoBehaviour
+public class Inamic:MonoBehaviour,ICombatant
 {
-    public GameObject nul;
+    GameObject nul;
     Manipulatori manip;
-    int viata, mana;
-    public string nume;
-    public bool mort;
-    void Awake()
+    Clasa clasa;
+    int viata;
+    int speed;
+    string nume;
+    bool mort;
+    void Start()
     {
         try
         {
             nume="Inamic";
-            viata=mana=100;
+            viata=100;
+            speed=clasa.GetSpeed();
             mort=false;
             nul = GameObject.Find("Obiect nul");
             manip = nul.GetComponent<Manipulatori>();
@@ -33,13 +36,13 @@ public class Inamic:MonoBehaviour
     {
         return this.viata;
     }
-    public void SetMana(int m)
+    public void SetSpeed(int m)
     {
-        this.mana = m;
+        this.speed = m;
     }
-    public int GetMana()
+    public int GetSpeed()
     {
-        return this.mana;
+        return this.speed;
     }
     public void SetNume(string s)
     {
@@ -49,6 +52,22 @@ public class Inamic:MonoBehaviour
     {
         return this.nume;
     }
+    public void SetClasa(Clasa c)
+    {
+        clasa = c;
+    }
+    public Clasa GetClasa()
+    {
+        return clasa;
+    }
+    public bool EsteMort()
+    {
+        return this.mort;
+    }
+    public void SeteazaMort(bool m)
+    {
+        this.mort = m;
+    }
     void OnMouseOver()
     {
         if(!manip.statistici.activeInHierarchy)
@@ -56,7 +75,6 @@ public class Inamic:MonoBehaviour
         try   
         {
             manip.statistici.transform.GetChild(0).GetComponent<Text>().text = String.Format("Viata: {0}", this.viata);
-            manip.statistici.transform.GetChild(1).GetComponent<Text>().text = String.Format("Mana: {0}", this.mana);
             manip.statistici.transform.GetChild(2).GetComponent<Text>().text = String.Format("Nume: {0}", this.nume);
         }
         catch (Exception e)
@@ -68,13 +86,5 @@ public class Inamic:MonoBehaviour
     {
         if (manip.statistici.activeInHierarchy)
             manip.statistici.SetActive(false);
-    }
-    public bool EsteMort()
-    {
-        return this.mort;
-    }
-    public void SeteazaMort(bool m)
-    {
-        this.mort = m;
     }
 }

@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-public class Aliat:MonoBehaviour
+public class Aliat:MonoBehaviour,ICombatant
 {
     GameObject nul;
     Manipulatori manip;
-    int viata, mana;
+    Clasa clasa;
+    int viata;
+    int speed;
     string nume;
     bool mort;
-    void Awake()
+    void Start()
     {
         try
         {
             nume="Aliat";
-            viata=mana=100;
+            viata=100;
+            speed=clasa.GetSpeed();
             mort=false;
             nul = GameObject.Find("Obiect nul");
             manip = nul.GetComponent<Manipulatori>();
@@ -33,13 +36,13 @@ public class Aliat:MonoBehaviour
     {
         return this.viata;
     }
-    public void SetMana(int m)
+    public void SetSpeed(int m)
     {
-        this.mana = m;
+        this.speed = m;
     }
-    public int GetMana()
+    public int GetSpeed()
     {
-        return this.mana;
+        return this.speed;
     }
     public void SetNume(string s)
     {
@@ -57,20 +60,27 @@ public class Aliat:MonoBehaviour
     {
         this.mort = m;
     }
+    public void SetClasa(Clasa c)
+    {
+        clasa = c;
+    }
+    public Clasa GetClasa()
+    {
+        return clasa;
+    }
     void OnMouseOver()
     {
         if(!manip.statistici.activeInHierarchy)
             manip.statistici.SetActive(true);
-            try   
-            {
-                manip.statistici.transform.GetChild(0).GetComponent<Text>().text = String.Format("Viata: {0}", this.viata);
-                manip.statistici.transform.GetChild(1).GetComponent<Text>().text = String.Format("Mana: {0}", this.mana);
-                manip.statistici.transform.GetChild(2).GetComponent<Text>().text = String.Format("Nume: {0}", this.nume);
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-            }
+        try   
+        {
+            manip.statistici.transform.GetChild(0).GetComponent<Text>().text = String.Format("Viata: {0}", this.viata);
+            manip.statistici.transform.GetChild(1).GetComponent<Text>().text = String.Format("Nume: {0}", this.nume);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
     }
     void OnMouseExit()
     {
