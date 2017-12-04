@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jucator : MonoBehaviour 
 {
+		
     /*
 	 * Abilitati - Fiecare abilitate posibila in joc
 	 * Momentan am considerat ca fiecare abilitate are o singura "pozitie" posibila in joc. Daca trebuie facute modificari, ele trebuie facute in clasa Abilitate si in functia PoateFolosiAbilitate
@@ -16,10 +17,6 @@ public class Jucator : MonoBehaviour
         InitializareAbilitati();
         InitializareClase();
     }
-	bool PoateFolosiAbilitatea(int pozitie,Abilitate abil)
-	{
-		return pozitie == abil.GetPozitie ();
-	}
     void InitializareAbilitati()
     {
         //Aici se vor introduce manuale toate abilitatile posibile din joc.
@@ -50,7 +47,8 @@ public class Clasa
     {
         return nume;
     }
-	public Clasa()
+	public List<Abilitate> abilitati = new List<Abilitate> ();
+	Clasa()
 	{
         nume = "Clasa";
         speed = 1;
@@ -59,21 +57,4 @@ public class Clasa
 public class Abilitate
 {
 	string nume;
-	int pozitie;
-	public void SetNume(string s)
-	{
-		nume = s;
-	}
-	public string GetNume()
-	{
-		return nume;
-	}
-	public void SetPozitie(int p)
-	{
-		pozitie = p;
-	}
-	public int GetPozitie()
-	{
-		return pozitie;
-	}
 }
