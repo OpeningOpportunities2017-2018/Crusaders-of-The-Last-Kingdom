@@ -51,10 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripturi\Aliat.cs" />
-     <Compile Include="Assets\Scripturi\Combatant.cs" />
-     <Compile Include="Assets\Scripturi\Inamic.cs" />
-     <Compile Include="Assets\Scripturi\Jucator.cs" />
      <Compile Include="Assets\Scripturi\Manipulatori.cs" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>F:/Scoala/OpeningOpportunities2017/Joc/Joc/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
