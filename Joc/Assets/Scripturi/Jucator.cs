@@ -19,11 +19,11 @@ public class Jucator : MonoBehaviour
     }
     void InitializareAbilitati()
     {
-        //Aici se vor introduce manuale toate abilitatile posibile din joc.
+        //Aici se vor introduce manuale toate abilitatile posibile din joc, folosind functiile de setare atribute.
     }
     void InitializareClase()
     {
-        //Aici se vor introduce manual toate clasele posibile din joc
+        //Aici se vor introduce manual toate clasele posibile din joc, folosind functiile de setare atribute.
     }
 }
 public class Clasa
@@ -47,7 +47,14 @@ public class Clasa
     {
         return nume;
     }
-	public List<Abilitate> abilitati = new List<Abilitate> ();
+    public void AdaugaAbilitate(Abilitate a)
+    {
+        abilspec.Add(a);
+    }
+    public List<Abilitate> ObtineAbilitati()
+    {
+        return abilspec;
+    }
 	Clasa()
 	{
         nume = "Clasa";
@@ -57,4 +64,12 @@ public class Clasa
 public class Abilitate
 {
 	string nume;
+    void SetNume(string s)
+    {
+        nume = s;
+    }
+    string GetNume()
+    {
+        return nume;
+    }
 }

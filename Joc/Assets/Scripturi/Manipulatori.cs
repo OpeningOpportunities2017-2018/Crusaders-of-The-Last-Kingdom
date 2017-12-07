@@ -4,12 +4,13 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using System.Threading;
+using UnityEditor.Advertisements;
 public class Manipulatori : MonoBehaviour 
 {
 	public GameObject imagine,butondummy,text1;//Toate astea is pentru test
-    public GameObject aliat,inamic;//Prefaburi pentru aliati si inamici
+    public List<Slider> slidere = new List<Slider>();//Culorile se vor pune in ordinea rosu, verde si albastru. Este doar pentru teste
+    public GameObject aliat,inamic;//Prefaburile pentru aliati si inamici
     public GameObject statistici;//Prefab pentru statistici
-	public List<Slider> slidere = new List<Slider>();//Culorile se vor pune in ordinea rosu, verde si albastru. Este doar pentru teste
     public List<GameObject> aliati = new List<GameObject>(),inamici=new List<GameObject>();//Liste ce contin toti aliatii si toti inamicii
 	System.Random rand = new System.Random();//Nu sterge. Asta e obiectul care va fi folosit pentru fiecare generare de numar aleator
     public string textrand = "Numar aleator generat: {0}";//Text prestabilit pentru testare generator de nr. aleatorii ({0} e masca)
