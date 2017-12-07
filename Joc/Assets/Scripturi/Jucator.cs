@@ -10,6 +10,7 @@ public class Jucator : MonoBehaviour
 	 * Momentan am considerat ca fiecare abilitate are o singura "pozitie" posibila in joc. Daca trebuie facute modificari, ele trebuie facute in clasa Abilitate si in functia PoateFolosiAbilitate
      * Clasele din fisierul asta vor fi globale, iar intr-un alt fisier voi face clasele orientate pentru instantiere
 	 */
+    //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
 	public List<Abilitate> abilitati = new List<Abilitate> ();//Toate abilitatile din joc.
     public Dictionary<string,Clasa> clase = new Dictionary<string, Clasa>();//Clasele de jucatori.
     void Awake()

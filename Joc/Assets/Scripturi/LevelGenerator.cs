@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-
+using System.Collections;
+using System;
 public class LevelGenerator : MonoBehaviour {
 
     public Texture2D map;
     public ColorToPrefab[] colorMappings;
 
-	void Start () {
-        GenerateLevel();
+	void Start () 
+    {
+        //GenerateLevel();
 	}
 	
     void GenerateLevel()
@@ -33,8 +35,15 @@ public class LevelGenerator : MonoBehaviour {
         {
             if(colorMapping.color.Equals(pixelColor))
             {
-                Vector2 position = new Vector2(x, y);
-                Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+                try
+                {
+                    Vector2 position = new Vector2(x, y);
+                    Instantiate(colorMapping.prefab, position, Quaternion.identity, transform);
+                }
+                catch(Exception e)
+                {
+                    Debug.Log(e.Message);
+                }
             }
         }
     }
