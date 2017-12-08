@@ -5,8 +5,6 @@ using System;
 using UnityEngine.UI;
 public class Inamic:MonoBehaviour,ICombatant
 {
-    GameObject nul;
-    Manipulatori manip;
     Clasa clasa;
     int viata;
     int speed;
@@ -20,8 +18,6 @@ public class Inamic:MonoBehaviour,ICombatant
             viata=100;
             speed=clasa.GetSpeed();
             mort=false;
-            nul = GameObject.Find("Obiect nul");
-            manip = nul.GetComponent<Manipulatori>();
         }
         catch(Exception e)
         {
@@ -52,14 +48,6 @@ public class Inamic:MonoBehaviour,ICombatant
     {
         return this.nume;
     }
-    public void SetClasa(Clasa c)
-    {
-        clasa = c;
-    }
-    public Clasa GetClasa()
-    {
-        return clasa;
-    }
     public bool EsteMort()
     {
         return this.mort;
@@ -67,5 +55,13 @@ public class Inamic:MonoBehaviour,ICombatant
     public void SeteazaMort(bool m)
     {
         this.mort = m;
+    }
+    public void SetClasa(Clasa c)
+    {
+        clasa = c;
+    }
+    public Clasa GetClasa()
+    {
+        return clasa;
     }
 }

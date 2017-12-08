@@ -5,8 +5,6 @@ using System;
 using UnityEngine.UI;
 public class Aliat:MonoBehaviour,ICombatant
 {
-    GameObject nul;
-    Manipulatori manip;
     Clasa clasa;
     int viata;
     int speed;
@@ -20,8 +18,6 @@ public class Aliat:MonoBehaviour,ICombatant
             viata=100;
             speed=clasa.GetSpeed();
             mort=false;
-            nul = GameObject.Find("Obiect nul");
-            manip = nul.GetComponent<Manipulatori>();
         }
         catch(Exception e)
         {
