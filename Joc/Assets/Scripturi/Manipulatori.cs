@@ -17,14 +17,40 @@ public class Manipulatori : MonoBehaviour
     //Schimbare. Propun sa facem functiile de aici de manipulare statice, ca sa nu trebuiasca sa tot cautam obiectul nul. E pentru optimizare
 	void Start () 
 	{
-        RotireTreptata(cub, rotatie);
-        MiscareTreptata(cub, directie);
+        
 	}
 	void Update () 
 	{
-        
+        if (Input.GetKey(KeyCode.A))
+        {
+            MiscaDinTasta(cub, KeyCode.A,0.5f);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            MiscaDinTasta(cub, KeyCode.D,0.5f);
+        }
 	}
-	void SchimbaCuloare(GameObject obiect,Color culoare)//Merge daca imaginea nu face parte din UI (nu e randata cu Image, ci cu Sprite Renderer)
+    void MiscaDinTasta(GameObject g,KeyCode cod,float multip=1f)//Misca obiectul g cu tasta cu codul "cod" cu multiplicatorul multip 
+    {
+        switch(cod)
+        {
+            case KeyCode.A:
+                {
+                    g.transform.Translate(Vector3.left*multip);
+                    break;
+                }
+            case KeyCode.D:
+                {
+                    g.transform.Translate(Vector3.right*multip);
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+    }
+	static void SchimbaCuloare(GameObject obiect,Color culoare)//Merge daca imaginea nu face parte din UI (nu e randata cu Image, ci cu Sprite Renderer)
 	{
 		SpriteRenderer randare;
 		try
@@ -37,52 +63,50 @@ public class Manipulatori : MonoBehaviour
 			Debug.Log (e.Message);
 		}
 	}
-    void RotireTreptata(GameObject g,Vector3 rot,int etape)
+    void RotireTreptata(GameObject g,Vector3 rot,uint etape=0)
     {
         StartCoroutine(RotesteTreptat(g, rot,etape));
     }
-    IEnumerator RotesteTreptat(GameObject g,Vector3 rot,int etape)
+    static IEnumerator RotesteTreptat(GameObject g,Vector3 rot,uint etape)//Daca etape=0 se repeta la infinit.
     {
-        for(int i=1;i<=etape;i++)
+        if (etape > 0)
         {
-            g.transform.Rotate(rot);
-            yield return new WaitForFixedUpdate();
+            for (int i = 1; i <= etape; i++)
+            {
+                g.transform.Rotate(rot);
+                yield return new WaitForFixedUpdate();
+            }
         }
-    }    
-    void RotireTreptata(GameObject g,Vector3 rot)
-    {
-        StartCoroutine(RotesteTreptat(g, rot));
-    }
-    IEnumerator RotesteTreptat(GameObject g,Vector3 rot)
-    {
-        while(true)
+        else
         {
-            g.transform.Rotate(rot);
-            yield return new WaitForFixedUpdate();
+            while (true)
+            {
+                g.transform.Rotate(rot);
+                yield return new WaitForFixedUpdate();
+            }
         }
     }
-    void MiscareTreptata(GameObject g,Vector3 misc,int etape)
+    void MiscareTreptata(GameObject g,Vector3 misc,uint etape=0)//Daca etape=0 se repeta la infinit
     {
         StartCoroutine(MiscaTreptat(g, misc,etape));
     }
-    IEnumerator MiscaTreptat(GameObject g,Vector3 misc,int etape)
+    static IEnumerator MiscaTreptat(GameObject g,Vector3 misc,uint etape)
     {
-        for(int i=1;i<=etape;i++)
+        if (etape > 0)
         {
-            g.transform.Translate(misc, Space.World);
-            yield return new WaitForFixedUpdate();
+            for (int i = 1; i <= etape; i++)
+            {
+                g.transform.Translate(misc, Space.World);
+                yield return new WaitForFixedUpdate();
+            }
         }
-    }
-    void MiscareTreptata(GameObject g,Vector3 misc)
-    {
-        StartCoroutine(MiscaTreptat(g, misc));
-    }
-    IEnumerator MiscaTreptat(GameObject g,Vector3 misc)
-    {
-        while(true)
+        else
         {
-            g.transform.Translate(misc, Space.World);
-            yield return new WaitForFixedUpdate();
+            while (true)
+            {
+                g.transform.Translate(misc, Space.World);
+                yield return new WaitForFixedUpdate();
+            }
         }
     }
 }

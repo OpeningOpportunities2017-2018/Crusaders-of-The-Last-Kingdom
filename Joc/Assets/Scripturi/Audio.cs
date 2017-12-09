@@ -9,7 +9,7 @@ public class Audio : MonoBehaviour
 	void Start () 
     {
         proba.time = 20;
-        proba.pitch = 0.7f;
+        proba.pitch = 0.9f;
 	}
 	void Update () 
     {
