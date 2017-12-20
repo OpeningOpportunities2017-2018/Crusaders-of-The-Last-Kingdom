@@ -1,9 +1,9 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-public class Aliat:MonoBehaviour,ICombatant
+public class Aliat:ICombatant
 {
     Clasa clasa;
     int viata;
@@ -16,7 +16,7 @@ public class Aliat:MonoBehaviour,ICombatant
         {
             nume="Aliat";
             viata=100;
-            speed=clasa.GetSpeed();
+            speed=1;
             mort=false;
         }
         catch(Exception e)

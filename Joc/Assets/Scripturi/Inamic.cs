@@ -1,9 +1,9 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-public class Inamic:MonoBehaviour,ICombatant
+public class Inamic:ICombatant
 {
     Clasa clasa;
     int viata;
@@ -16,7 +16,7 @@ public class Inamic:MonoBehaviour,ICombatant
         {
             nume="Inamic";
             viata=100;
-            speed=clasa.GetSpeed();
+            speed=1;
             mort=false;
         }
         catch(Exception e)

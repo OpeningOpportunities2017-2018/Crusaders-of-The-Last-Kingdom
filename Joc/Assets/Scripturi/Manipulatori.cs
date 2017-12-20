@@ -8,8 +8,6 @@ using UnityEditor.Advertisements;
 public class Manipulatori : MonoBehaviour 
 {
     //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
-    public GameObject aliat,inamic;//Prefaburile pentru aliati si inamici
-    public List<GameObject> aliati = new List<GameObject>(),inamici=new List<GameObject>();//Liste ce contin toti aliatii si toti inamicii
 	System.Random rand = new System.Random();//Nu sterge. Asta e obiectul care va fi folosit pentru fiecare generare de numar aleator
     GameObject g;//Folosit pentru adaugarea aliatilor si inamicilor in listele lor.
     public GameObject cub;//Obiect pentru testare functii de rotire/manipulare treptata
