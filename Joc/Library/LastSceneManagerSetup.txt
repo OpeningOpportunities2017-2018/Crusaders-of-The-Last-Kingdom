@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Main.unity
+- path: Assets/Scene/Scena_Cosmin.unity
   isLoaded: 1
   isActive: 1
