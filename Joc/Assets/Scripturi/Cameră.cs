@@ -8,10 +8,9 @@ public class Cameră : MonoBehaviour
     public GameObject obiect_urmarit;//Obiect urmarit de camera asta
     public Vector3 dif;
     public Vector3 rotatie;
-    public GameObject cub;
     void Start()
     {
-        UrmaresteObiect(cub);
+        
     }
     public void UrmaresteObiect(GameObject g)
     {
