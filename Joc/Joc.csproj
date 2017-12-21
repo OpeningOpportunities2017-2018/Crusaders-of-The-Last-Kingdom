@@ -391,6 +391,9 @@
     <Compile Include="Assets\Scripturi\Camer%C4%83.cs" />
     <Compile Include="Assets\Scripturi\ColorToPrefab.cs" />
     <Compile Include="Assets\Scripturi\Combatant.cs" />
+    <Compile Include="Assets\Scripturi\George\Calcul.cs" />
+    <Compile Include="Assets\Scripturi\George\EMPTY.cs" />
+    <Compile Include="Assets\Scripturi\George\STATUS.cs" />
     <Compile Include="Assets\Scripturi\Inamic.cs" />
     <Compile Include="Assets\Scripturi\Jucator.cs" />
     <Compile Include="Assets\Scripturi\LevelGenerator.cs" />
