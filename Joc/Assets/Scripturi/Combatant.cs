@@ -68,6 +68,27 @@ public class Combatant:MonoBehaviour,ICombatant
         else if (tip == 1)
             i.SetViata(v);
     }
+    public void GiveViata(int v)
+    {
+        if (tip == 0)
+        {
+            if (!a.EsteMort())
+            {
+                a.SetViata(a.GetViata() + v);
+                if (a.GetViata() <= 0)
+                    a.SeteazaMort(true);
+            }
+        }
+        else if (tip == 1)
+        {
+            if (!i.EsteMort())
+            {
+                i.SetViata(i.GetViata() + v);
+                if (i.GetViata() <= 0)
+                    i.SeteazaMort(true);
+            }
+        }
+    }
     public int GetViata()
     {
         if (tip == 0)

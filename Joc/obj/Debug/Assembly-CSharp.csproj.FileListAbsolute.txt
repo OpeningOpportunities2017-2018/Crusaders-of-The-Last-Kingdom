@@ -37,3 +37,34 @@ F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEngine.HoloLens.x
 F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
 F:\Scoala\OpeningOpportunities2017\Joc\Joc\obj\Debug\Assembly-CSharp.dll
 F:\Scoala\OpeningOpportunities2017\Joc\Joc\obj\Debug\Assembly-CSharp.pdb
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Advertisements.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Analytics.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.GoogleAudioSpatializer.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Graphs.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.HoloLens.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Networking.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Purchasing.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.SpatialTracking.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.TestRunner.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Timeline.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.TreeEditor.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.UI.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.UIAutomation.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.VR.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.WindowsStandalone.Extensions.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEngine.Advertisements.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEngine.StandardEvents.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.UI.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Networking.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.TestRunner.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.Timeline.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.TreeEditor.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.UIAutomation.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.GoogleAudioSpatializer.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.HoloLens.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.SpatialTracking.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.VR.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\Mini Profiler Editor.dll
+F:\Scoala\OpeningOpportunities2017\Joc\Joc\Temp\bin\Debug\Mini Profiler.dll

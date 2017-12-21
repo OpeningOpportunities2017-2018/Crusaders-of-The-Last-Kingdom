@@ -15,20 +15,47 @@ public class Jucator : MonoBehaviour
 	public static List<Abilitate> abilitati = new List<Abilitate> ();//Toate abilitatile din joc.
     public static Dictionary<string,Clasa> clase = new Dictionary<string, Clasa>();//Clasele de jucatori.
     public List<GameObject> combatanti = new List<GameObject>();//Toti combatantii din terenul de joc
-    public Queue<Combatant> ture = new Queue<Combatant>();//Ordinea combatantilor la atac
+    public Queue<GameObject> ture = new Queue<GameObject>();//Ordinea combatantilor la atac
     public List<GameObject> aliati = new List<GameObject>(),inamici=new List<GameObject>();//Liste ce contin toate prefaburile de aliatii si toate prefaburile de inamici
-    public string stats="Nume - {0}\nTip - {1}\nViata - {2}\nMort - {3}";
-    public Vector3[,] pozaliati = new Vector3[3,3],pozinamici=new Vector3[3,3];
+    public Vector3[,] pozaliati = new Vector3[3,3],pozinamici=new Vector3[3,3];//Matrice de pozitii personaje. Nu sterge. Ms
+    public string stats="Nume - {0}\nTip - {1}\nViata - {2}\nMort - {3}";//De test
+    GameObject comb,tmp;//De test
+    Combatant c;//De test
     void Awake()
     {
         InitializareAbilitati();
         InitializareClase();
         InitializarePozitii();
-        InitializareTure();
     }
     void Start()
     {
+        //Creez personajele si le pregatesc de lupta
         CreareCombatant(0,0,"Aliatul unic",100,1,clase["Tank"],pozaliati[0,0]);
+        CreareCombatant(1, 0, "Unicul inamic malefic. Timpul", 100, 4, clase["Rogue"], pozinamici[0, 0]);
+        CreareCombatant(0,0,"Aliatul secund",100,3,clase["Priest"],pozaliati[1,0]);
+        CreareCombatant(1, 0, "Vai de capul meu", 100, 2, clase["Rogue"], pozinamici[1, 0]);
+        InitializareTure();
+    }
+    void Update()
+    {
+        //Daca apas tasta W, personajele vor lua damage 5 in ordinea lor din coada.
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            comb = UrmatorulCombatant();
+            c = comb.GetComponent<Combatant>();
+            c.GiveViata(-5);
+            foreach (GameObject g in combatanti)
+            {
+                if (g == comb)
+                {
+                    tmp = g;
+                    break;
+                }
+            }
+            Debug.Log("Combatantul cu numele "+c.GetNume()+" si speed "+c.GetSpeed()+" a luat 5 damage.");
+            tmp.transform.GetChild(0).GetComponent<TextMesh>().text = String.Format(stats, c.GetNume(), c.GetTip(), c.GetViata(), c.EsteMort());
+            AdaugaTura(comb);
+        }
     }
     void CreareCombatant(int tip,int prefab,string num,int viata,int speed,Clasa c,Vector3 poz)
     {
@@ -52,7 +79,7 @@ public class Jucator : MonoBehaviour
             temp.GetComponent<Combatant>().SetSpeed(speed);
             temp.GetComponent<Combatant>().SeteazaMort(false);
             statistici=String.Format(stats,temp.GetComponent<Combatant>().GetNume(),temp.GetComponent<Combatant>().GetTip(),temp.GetComponent<Combatant>().GetViata(),temp.GetComponent<Combatant>().EsteMort());
-            Debug.Log(statistici);
+            temp.transform.GetChild(0).GetComponent<TextMesh>().text=statistici;
             combatanti.Add(temp);
         }
         catch(Exception e)
@@ -83,11 +110,11 @@ public class Jucator : MonoBehaviour
         pozinamici[2, 1] = new Vector3(1f,-0.63f,31.62f);
         pozinamici[2, 2] = new Vector3(1f,-0.63f,26.8f);
     }
-    void AdaugaTura(Combatant c)
+    void AdaugaTura(GameObject c)
     {
         ture.Enqueue(c);
     }
-    Combatant UrmatorulCombatant()
+    GameObject UrmatorulCombatant()
     {
         return ture.Dequeue();
     }
@@ -111,7 +138,29 @@ public class Jucator : MonoBehaviour
     }
     void InitializareTure()
     {
-        
+        //Copie intr-o lista toti combatantii, ii sorteaza dupa speed si apoi ii baga in coada
+        List<GameObject> temp = new List<GameObject>();
+        GameObject aux;
+        foreach (GameObject g in combatanti)
+        {
+            temp.Add(g);
+        }
+        for (int i = 0; i < temp.Count-1; i++)
+        {
+            for (int j = i + 1; j < temp.Count; j++)
+            {
+                if (temp[i].GetComponent<Combatant>().GetSpeed() < temp[j].GetComponent<Combatant>().GetSpeed())
+                {
+                    aux = temp[i];
+                    temp[i] = temp[j];
+                    temp[j] = aux;
+                }
+            }
+        }
+        foreach (GameObject g in temp)
+        {
+            AdaugaTura(g);
+        }
     }
 }
 public class Clasa
@@ -189,6 +238,10 @@ public class Abilitate
     public int GetTarget()
     {
         return target;
+    }
+    void FacCeEDeFacut(GameObject target)//Aici mai e de munca, dar se vor face cazuri particulare
+    {
+        target.GetComponent<Combatant>().SetViata(target.GetComponent<Combatant>().GetViata() - damage);
     }
     public Abilitate(string num="Abilitate",int dmg=10,int trg=1)
     {

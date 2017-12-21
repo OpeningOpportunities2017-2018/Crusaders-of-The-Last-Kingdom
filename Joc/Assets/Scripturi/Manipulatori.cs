@@ -10,7 +10,6 @@ public class Manipulatori : MonoBehaviour
     //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
 	System.Random rand = new System.Random();//Nu sterge. Asta e obiectul care va fi folosit pentru fiecare generare de numar aleator
     GameObject g;//Folosit pentru adaugarea aliatilor si inamicilor in listele lor.
-    public GameObject cub;//Obiect pentru testare functii de rotire/manipulare treptata
     public Vector3 rotatie,directie;//Cum se roteste/misca obiectul de test
     //Schimbare. Propun sa facem functiile de aici de manipulare statice, ca sa nu trebuiasca sa tot cautam obiectul nul. E pentru optimizare
 	void Start () 
@@ -19,14 +18,7 @@ public class Manipulatori : MonoBehaviour
 	}
 	void Update () 
 	{
-        if (Input.GetKey(KeyCode.A))
-        {
-            MiscaDinTasta(cub, KeyCode.A,0.5f);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            MiscaDinTasta(cub, KeyCode.D,0.5f);
-        }
+        
 	}
     void MiscaDinTasta(GameObject g,KeyCode cod,float multip=1f)//Misca obiectul g cu tasta cu codul "cod" cu multiplicatorul multip 
     {

@@ -6,8 +6,7 @@ using System;
 public class Cameră : MonoBehaviour 
 {
     public GameObject obiect_urmarit;//Obiect urmarit de camera asta
-    public Vector3 dif;
-    public Vector3 rotatie;
+    public Vector3 dif;//Diferenta dintre obiect si camera, folosita pentru tracking
     void Start()
     {
         
