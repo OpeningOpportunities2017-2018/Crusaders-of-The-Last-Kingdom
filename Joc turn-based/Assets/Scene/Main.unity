@@ -487,8 +487,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatanti: []
-  aliati: []
-  inamici: []
+  aliati:
+  - {fileID: 1391037265895642, guid: cc4b1a900f11219478ce5271cd1ba10f, type: 2}
+  inamici:
+  - {fileID: 1921656230265882, guid: 528726ad08ff51445b2e9bdd5bb638a6, type: 2}
   stats: 'Nume - {0}
 
     Tip - {1}

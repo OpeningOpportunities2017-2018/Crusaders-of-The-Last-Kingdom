@@ -30,6 +30,7 @@ public class Jucator : MonoBehaviour
     void Start()
     {
         //Creez personajele si le pregatesc de lupta
+        CreareCombatant(0,0,"Numele tau frate",100,1,clase["Priest"],pozaliati[1,1]);
         InitializareTure();
     }
     void Update()
@@ -62,20 +63,19 @@ public class Jucator : MonoBehaviour
             if (tip == 0)
             {
                 temp = Instantiate(aliati[prefab], poz, Quaternion.identity);
+                temp.name=num+" - Aliat";
             }
             else
             {
                 temp = Instantiate(inamici[prefab], poz, Quaternion.identity);
+                temp.name=num+" - Inamic";
             }
-            temp.AddComponent<Combatant>();
             temp.GetComponent<Combatant>().SetTip(tip);
             temp.GetComponent<Combatant>().SetClasa(c);
             temp.GetComponent<Combatant>().SetViata(100);
             temp.GetComponent<Combatant>().SetNume(num);
             temp.GetComponent<Combatant>().SetSpeed(speed);
             temp.GetComponent<Combatant>().SeteazaMort(false);
-            statistici=String.Format(stats,temp.GetComponent<Combatant>().GetNume(),temp.GetComponent<Combatant>().GetTip(),temp.GetComponent<Combatant>().GetViata(),temp.GetComponent<Combatant>().EsteMort());
-            temp.transform.GetChild(0).GetComponent<TextMesh>().text=statistici;
             combatanti.Add(temp);
         }
         catch(Exception e)
