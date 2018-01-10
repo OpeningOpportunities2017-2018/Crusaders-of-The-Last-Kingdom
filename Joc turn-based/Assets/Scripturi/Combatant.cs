@@ -14,6 +14,7 @@ public interface ICombatant
     void SeteazaMort(bool m);
     void SetClasa(Clasa c);
     Clasa GetClasa();
+    void AdaugaAbilitate(Abilitate A);
 }
 public class Combatant:MonoBehaviour,ICombatant
 {
@@ -157,5 +158,12 @@ public class Combatant:MonoBehaviour,ICombatant
             a.SetClasa(c);
         else if (tip == 1)
             i.SetClasa(c);
+    }
+    public void AdaugaAbilitate(Abilitate ab)
+    {
+        if (tip == 0)
+            a.AdaugaAbilitate(ab);
+        else if (tip == 1)
+            i.AdaugaAbilitate(ab);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 public class Jucator : MonoBehaviour 
 {
-		
+
     /*
 	 * Abilitati - Fiecare abilitate posibila in joc
 	 * Momentan am considerat ca fiecare abilitate are o singura "pozitie" posibila in joc. Daca trebuie facute modificari, ele trebuie facute in clasa Abilitate si in functia PoateFolosiAbilitate
@@ -12,23 +12,28 @@ public class Jucator : MonoBehaviour
      * Abilitate=>Clasa=>Aliat si Inamic=>Combatant
 	 */
     //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
-	public static List<Abilitate> abilitati = new List<Abilitate> ();//Toate abilitatile din joc.
-    public static Dictionary<string,Clasa> clase = new Dictionary<string, Clasa>();//Clasele de jucatori.
-    public List<GameObject> combatanti = new List<GameObject>();//Toti combatantii din terenul de joc
-    public Queue<GameObject> ture = new Queue<GameObject>();//Ordinea combatantilor la atac
-    public List<GameObject> aliati = new List<GameObject>(),inamici=new List<GameObject>();//Liste ce contin toate prefaburile de aliatii si toate prefaburile de inamici
-    public Vector3[,] pozaliati = new Vector3[3,3],pozinamici=new Vector3[3,3];//Matrice de pozitii personaje. Nu sterge. Ms
+    public static List<Abilitate> abilitati;
+    public static Dictionary<string, Clasa> clase;
+    public List<GameObject> combatanti;
+    public Queue<GameObject> ture;
+    public List<GameObject> aliati, inamici;
+    public Vector3[,] pozaliati, pozinamici;
     public string stats="Nume - {0}\nTip - {1}\nViata - {2}\nMort - {3}";//De test
     GameObject comb,tmp;//De test
     Combatant c;//De test
     void Awake()
     {
-        InitializareAbilitati();
-        InitializareClase();
-        InitializarePozitii();
+        abilitati = new List<Abilitate>();//Toate abilitatile din joc.
+        clase = new Dictionary<string, Clasa>();//Clasele de jucatori.
+        combatanti = new List<GameObject>();//Toti combatantii din terenul de joc
+        ture = new Queue<GameObject>();//Ordinea combatantilor la atac
+        pozaliati = new Vector3[3, 3]; pozinamici = new Vector3[3, 3];//Matrice de pozitii personaje. Nu sterge. Ms
     }
     void Start()
     {
+        InitializareAbilitati();
+        InitializareClase();
+        InitializarePozitii();
         //Creez personajele si le pregatesc de lupta
         CreareCombatant(0,0,"Numele tau frate",100,1,clase["Priest"],pozaliati[1,1]);
         InitializareTure();
@@ -57,9 +62,6 @@ public class Jucator : MonoBehaviour
     void CreareCombatant(int tip,int prefab,string num,int viata,int speed,Clasa c,Vector3 poz)
     {
         GameObject temp;
-        string statistici;
-        try
-        {
             if (tip == 0)
             {
                 temp = Instantiate(aliati[prefab], poz, Quaternion.identity);
@@ -72,16 +74,11 @@ public class Jucator : MonoBehaviour
             }
             temp.GetComponent<Combatant>().SetTip(tip);
             temp.GetComponent<Combatant>().SetClasa(c);
-            temp.GetComponent<Combatant>().SetViata(100);
+            temp.GetComponent<Combatant>().SetViata(viata);
             temp.GetComponent<Combatant>().SetNume(num);
             temp.GetComponent<Combatant>().SetSpeed(speed);
             temp.GetComponent<Combatant>().SeteazaMort(false);
             combatanti.Add(temp);
-        }
-        catch(Exception e)
-        {
-            Debug.Log(e.Message);
-        }
     }
     void InitializarePozitii()
     {
@@ -200,7 +197,7 @@ public class Clasa
             nume = num;
             AdaugaAbilitati(incabil,sfabil);
         }
-        catch(System.Exception e)
+        catch(Exception e)
         {
             Debug.Log(e.Message);
         }

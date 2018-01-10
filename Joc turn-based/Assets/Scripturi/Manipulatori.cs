@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using System.Threading;
-using UnityEditor.Advertisements;
 public class Manipulatori : MonoBehaviour 
 {
     //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
@@ -12,6 +11,7 @@ public class Manipulatori : MonoBehaviour
     GameObject g;//Folosit pentru adaugarea aliatilor si inamicilor in listele lor.
     public Vector3 rotatie,directie;//Cum se roteste/misca obiectul de test
     //Schimbare. Propun sa facem functiile de aici de manipulare statice, ca sa nu trebuiasca sa tot cautam obiectul nul. E pentru optimizare
+    //Scriptul asta trebuie sa fie atasat de un obiect nul, pentru fiecare scena in parte
 	void Start () 
 	{
         

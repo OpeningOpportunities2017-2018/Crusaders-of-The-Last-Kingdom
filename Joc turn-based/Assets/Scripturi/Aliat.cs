@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Aliat:ICombatant
 {
     Clasa clasa;
+    List<Abilitate> abil;
     int viata;
     int speed;
     string nume;
@@ -63,5 +64,9 @@ public class Aliat:ICombatant
     public Clasa GetClasa()
     {
         return clasa;
+    }
+    public void AdaugaAbilitate(Abilitate a)
+    {
+        abil.Add(a);
     }
 }
