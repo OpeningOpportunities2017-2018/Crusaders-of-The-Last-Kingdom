@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 public class Jucator : MonoBehaviour 
 {
 
@@ -13,14 +14,15 @@ public class Jucator : MonoBehaviour
 	 */
     //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
     public static List<Abilitate> abilitati;
+    public List<Sprite> picabilitati;
     public static Dictionary<string, Clasa> clase;
     public List<GameObject> combatanti;
     public Queue<GameObject> ture;
     public List<GameObject> aliati, inamici;
     public Vector3[,] pozaliati, pozinamici;
-    public string stats="Nume - {0}\nTip - {1}\nViata - {2}\nMort - {3}";//De test
-    GameObject comb,tmp;//De test
-    Combatant c;//De test
+    public GameObject combselectat;//Combatant selectat
+    public static GameObject obnul;//Obiectul cu scripturi
+    public List<GameObject> slotabil;
     void Awake()
     {
         abilitati = new List<Abilitate>();//Toate abilitatile din joc.
@@ -34,30 +36,15 @@ public class Jucator : MonoBehaviour
         InitializareAbilitati();
         InitializareClase();
         InitializarePozitii();
+        obnul = transform.gameObject;
         //Creez personajele si le pregatesc de lupta
-        CreareCombatant(0,0,"Numele tau frate",100,1,clase["Priest"],pozaliati[1,1]);
+        CreareCombatant(0,0,"Salam",100,1,clase["Priest"],pozaliati[1,1]);
+        CreareCombatant(1, 0, "Ruacerii", 100, 1, clase["Tank"], pozinamici[1, 1]);
         InitializareTure();
     }
     void Update()
     {
-        //Daca apas tasta W, personajele vor lua damage 5 in ordinea lor din coada.
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            comb = UrmatorulCombatant();
-            c = comb.GetComponent<Combatant>();
-            c.GiveViata(-5);
-            foreach (GameObject g in combatanti)
-            {
-                if (g == comb)
-                {
-                    tmp = g;
-                    break;
-                }
-            }
-            Debug.Log("Combatantul cu numele "+c.GetNume()+" si speed "+c.GetSpeed()+" a luat 5 damage.");
-            tmp.transform.GetChild(0).GetComponent<TextMesh>().text = String.Format(stats, c.GetNume(), c.GetTip(), c.GetViata(), c.EsteMort());
-            AdaugaTura(comb);
-        }
+        
     }
     void CreareCombatant(int tip,int prefab,string num,int viata,int speed,Clasa c,Vector3 poz)
     {
@@ -79,6 +66,10 @@ public class Jucator : MonoBehaviour
             temp.GetComponent<Combatant>().SetSpeed(speed);
             temp.GetComponent<Combatant>().SeteazaMort(false);
             combatanti.Add(temp);
+    }
+    public void DetaliiDespreAbilitate()
+    {
+        Debug.Log("Am apasat pe o abilitate");
     }
     void InitializarePozitii()
     {
@@ -115,19 +106,27 @@ public class Jucator : MonoBehaviour
     {
         //Aici se vor introduce manuale toate abilitatile posibile din joc.
         //Abilitatile de aici is momentan de test, dar cine stie
-        abilitati.Add(new Abilitate("Drojdeala de jale", -50, 0));
-        abilitati.Add(new Abilitate("Dau heal cu borcanul", -40, 0));
-        abilitati.Add(new Abilitate("Conditia taranului", 45, 1));
-        abilitati.Add(new Abilitate("Divine revelation", 0, 1));
-        abilitati.Add(new Abilitate("Distrugator de Project Manager",100,1));
+        abilitati.Add(new Abilitate(picabilitati[3],"Drojdeala de jale", 50, 0));
+        abilitati.Add(new Abilitate(picabilitati[2], "Dau heal cu borcanul", 40, 0));
+        abilitati.Add(new Abilitate(picabilitati[4], "Conditia taranului", 45, 1));
+        abilitati.Add(new Abilitate(picabilitati[0], "Divine revelation", 0, 1));
+        abilitati.Add(new Abilitate(picabilitati[1], "Distrugator de Project Manager",100,1));
     }
     void InitializareClase()
     {
         //Aici se vor introduce manual toate clasele posibile din joc, folosind functiile de setare atribute.
         //Clasele de mai jos is momentan de test, dar din nou, cine stie
-        clase.Add("Tank",new Clasa("Tank",2,3));
-        clase.Add("Priest",new Clasa("Priest",1,1));
-        clase.Add("Rogue",new Clasa("Rogue",0,3));
+        Clasa temp;
+        temp = new Clasa("Tank");
+        temp.AdaugaAbilitate(abilitati[0]);
+        temp.AdaugaAbilitate(abilitati[1]);
+        clase.Add("Tank",temp);
+        temp = new Clasa("Priest");
+        temp.AdaugaAbilitati(0, 3);
+        clase.Add("Priest",temp);
+        temp = new Clasa("Rogue");
+        temp.AdaugaAbilitate(abilitati[4]);
+        clase.Add("Rogue",temp);
     }
     void InitializareTure()
     {
@@ -190,7 +189,7 @@ public class Clasa
     {
         return abilspec;
     }
-    public Clasa(string num="Clasa",int incabil=0,int sfabil=0)
+    public Clasa(string num,int incabil,int sfabil)
 	{
         try
         {
@@ -202,9 +201,18 @@ public class Clasa
             Debug.Log(e.Message);
         }
 	}
+    public Clasa()
+    {
+        nume = "Default";
+    }
+    public Clasa(string num)
+    {
+        nume = num;
+    }
 }
 public class Abilitate
 {
+    Sprite pictograma;
     int damage;
     int target;//0-Aliat,1-Inamic
 	string nume;
@@ -232,14 +240,35 @@ public class Abilitate
     {
         return target;
     }
-    void FacCeEDeFacut(GameObject target)//Aici mai e de munca, dar se vor face cazuri particulare
+    public void FacCeEDeFacut(GameObject target)//Aici mai e de munca, dar se vor face cazuri particulare
     {
-        target.GetComponent<Combatant>().SetViata(target.GetComponent<Combatant>().GetViata() - damage);
+        switch(target.GetComponent<Combatant>().GetTip())
+        {
+            case 0:
+                {
+                    target.GetComponent<Combatant>().SetViata(target.GetComponent<Combatant>().GetViata() + damage);
+                    break;
+                }
+            case 1:
+                {
+                    target.GetComponent<Combatant>().SetViata(target.GetComponent<Combatant>().GetViata() - damage);
+                    break;
+                }
+        }
     }
-    public Abilitate(string num="Abilitate",int dmg=10,int trg=1)
+    public void SetPictograma(Sprite pict)
+    {
+        pictograma = pict;
+    }
+    public Sprite GetPictograma()
+    {
+        return pictograma;
+    }
+    public Abilitate(Sprite pict,string num="Abilitate",int dmg=10,int trg=1)
     {
         nume = num;
         damage = dmg;
         target = trg;
+        pictograma = pict;
     }
 }

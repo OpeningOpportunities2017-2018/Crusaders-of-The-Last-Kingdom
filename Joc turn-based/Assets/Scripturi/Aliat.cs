@@ -65,8 +65,4 @@ public class Aliat:ICombatant
     {
         return clasa;
     }
-    public void AdaugaAbilitate(Abilitate a)
-    {
-        abil.Add(a);
-    }
 }

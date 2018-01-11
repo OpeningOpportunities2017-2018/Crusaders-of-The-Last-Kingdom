@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 //ICombatant te obliga si te face sa nu uiti ce functii ai de bagat, deci mai intai bagi aici antetul unei functii comune, si dup-aia o definesti
 public interface ICombatant 
 {
@@ -14,13 +15,17 @@ public interface ICombatant
     void SeteazaMort(bool m);
     void SetClasa(Clasa c);
     Clasa GetClasa();
-    void AdaugaAbilitate(Abilitate A);
 }
 public class Combatant:MonoBehaviour,ICombatant
 {
     Aliat a;
     Inamic i;
     int tip=0;//Deocamdata 0-Aliat,1-Inamic
+    public GameObject nul;//Obiectul cu scripturi
+    void Start()
+    {
+        nul = Jucator.obnul;
+    }
     public Combatant(Clasa c,int t=0,int viata=100,int speed=1,string nume="",bool mort=false)
     {
         if (t == 0)
@@ -159,11 +164,25 @@ public class Combatant:MonoBehaviour,ICombatant
         else if (tip == 1)
             i.SetClasa(c);
     }
-    public void AdaugaAbilitate(Abilitate ab)
+    void OnMouseDown()
     {
-        if (tip == 0)
-            a.AdaugaAbilitate(ab);
-        else if (tip == 1)
-            i.AdaugaAbilitate(ab);
+        //Am facut aici ceva care sa evidentieze jucatorii selectati si abilitatile ce le poseda
+        if (nul.GetComponent<Jucator>().combselectat != null)
+        {
+            nul.GetComponent<Jucator>().combselectat.GetComponent<ParticleSystem>().Stop();
+        }
+        nul.GetComponent<Jucator>().combselectat = transform.gameObject;
+        nul.GetComponent<Jucator>().combselectat.GetComponent<ParticleSystem>().Play();
+        foreach(GameObject g in nul.GetComponent<Jucator>().slotabil)
+        {
+            g.SetActive(false);
+        }
+        int i = 0;
+        foreach(Abilitate a in transform.gameObject.GetComponent<Combatant>().GetClasa().ObtineAbilitati())
+        {
+            nul.GetComponent<Jucator>().slotabil[i].SetActive(true);
+            nul.GetComponent<Jucator>().slotabil[i].GetComponent<Image>().sprite = a.GetPictograma();
+            i++;
+        }
     }
 }
