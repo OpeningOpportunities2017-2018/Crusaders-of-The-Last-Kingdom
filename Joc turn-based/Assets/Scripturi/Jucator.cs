@@ -67,9 +67,16 @@ public class Jucator : MonoBehaviour
             temp.GetComponent<Combatant>().SeteazaMort(false);
             combatanti.Add(temp);
     }
-    public void DetaliiDespreAbilitate()
+    public void ClickPeAbilitate(GameObject buton)
     {
-        Debug.Log("Am apasat pe o abilitate");
+        for(int i=0;i<slotabil.Count;i++)
+        {
+            if(slotabil[i]==buton)
+            {
+                Debug.Log(abilitati[i].GetNume());
+                break;
+            }
+        }
     }
     void InitializarePozitii()
     {
