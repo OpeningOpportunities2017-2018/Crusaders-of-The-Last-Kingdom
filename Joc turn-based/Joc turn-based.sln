@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joc turn-based", "Joc turn-based.csproj", "{FEB7DE0C-9C48-D6B6-63AA-C655A77EBF01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joc turn-based.Editor", "Joc turn-based.Editor.csproj", "{CAF1C908-9541-2EAE-B04F-8C8F90A88433}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEB7DE0C-9C48-D6B6-63AA-C655A77EBF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB7DE0C-9C48-D6B6-63AA-C655A77EBF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB7DE0C-9C48-D6B6-63AA-C655A77EBF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB7DE0C-9C48-D6B6-63AA-C655A77EBF01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF1C908-9541-2EAE-B04F-8C8F90A88433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF1C908-9541-2EAE-B04F-8C8F90A88433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF1C908-9541-2EAE-B04F-8C8F90A88433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF1C908-9541-2EAE-B04F-8C8F90A88433}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
