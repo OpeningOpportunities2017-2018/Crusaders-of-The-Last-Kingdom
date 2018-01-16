@@ -38,8 +38,11 @@ public class Jucator : MonoBehaviour
         InitializarePozitii();
         obnul = transform.gameObject;
         //Creez personajele si le pregatesc de lupta
-        CreareCombatant(0,0,"Salam",100,1,clase["Priest"],pozaliati[1,1]);
-        CreareCombatant(1, 0, "Ruacerii", 100, 1, clase["Tank"], pozinamici[1, 1]);
+        CreareCombatant(0, 0, "Priest",100,1,clase["Priest"],pozaliati[0,0]);
+        CreareCombatant(0, 0, "Tank", 100, 3, clase["Tank"], pozaliati[2, 2]);
+        CreareCombatant(0, 0, "Rogue", 100, 5, clase["Rogue"], pozaliati[1,1]);
+        CreareCombatant(1, 0, "Rogue inamic", 100, 2, clase["Rogue"], pozinamici[0,2]);
+        CreareCombatant(1, 0, "Tank inamic", 100, 4, clase["Tank"], pozinamici[2,0]);
         InitializareTure();
     }
     void Update()
@@ -251,12 +254,7 @@ public class Abilitate
     {
         switch(target.GetComponent<Combatant>().GetTip())
         {
-            case 0:
-                {
-                    target.GetComponent<Combatant>().SetViata(target.GetComponent<Combatant>().GetViata() + damage);
-                    break;
-                }
-            case 1:
+            default:
                 {
                     target.GetComponent<Combatant>().SetViata(target.GetComponent<Combatant>().GetViata() - damage);
                     break;
