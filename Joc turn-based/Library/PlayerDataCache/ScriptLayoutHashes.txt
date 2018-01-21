@@ -132,7 +132,7 @@ bb682ba95c07e796dda5d7a15bb8074b Mini Profiler.dll:kleberswf.tools.util.Keyboard
 9baafe3bf02e3e17bdab81bde83e1acd Mini Profiler.dll:kleberswf.tools.miniprofiler.MemoryValueProvider
 ac16949609d383f6470283fa5cfb1605 Mini Profiler.dll:kleberswf.tools.miniprofiler.MiniProfiler
 ab881fcd3864f32bd335ec0135720550 Assembly-CSharp.dll:.EMPTY
-826bbe653447ec62bd9cc119ee229d00 Assembly-CSharp.dll:.Jucator
+84567b712558ad7edba93b0d0291c269 Assembly-CSharp.dll:.Jucator
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -169,3 +169,4 @@ f5211229bcfbf8e592a62a8bd72fb0cb Assembly-CSharp.dll:.Calcul
 d01b57e34033d99c9a1cc33027903a7f Assembly-CSharp.dll:.Manipulatori
 92ec000703f0be398e232421464690d9 Assembly-CSharp.dll:DragonBones.UnityBone
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:DragonBones.UnityCombineMesh
+5cdbeb5970f249251715fdf36c49b63a Assembly-CSharp.dll:.Combat

@@ -15,7 +15,7 @@ public class CameraScript : MonoBehaviour
         try
         {
             obiect_urmarit = g;
-            dif = this.transform.position-g.transform.position;
+            dif = transform.position-g.transform.position;
         }
         catch(Exception e)
         {
@@ -25,6 +25,6 @@ public class CameraScript : MonoBehaviour
     void LateUpdate()
     {
         if(obiect_urmarit!=null)
-            this.transform.position = obiect_urmarit.transform.position + dif;
+            transform.position = obiect_urmarit.transform.position + dif;
     }
 }

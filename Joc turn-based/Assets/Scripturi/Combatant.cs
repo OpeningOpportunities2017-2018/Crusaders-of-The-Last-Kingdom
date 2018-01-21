@@ -164,29 +164,13 @@ public class Combatant:MonoBehaviour,ICombatant
         else if (tip == 1)
             i.SetClasa(c);
     }
-    void EvidentiereCombatantSelectat(GameObject nou)
-    {
-        //Am facut aici ceva care sa evidentieze jucatorii selectati si abilitatile ce le poseda
-        if (nul.GetComponent<Jucator>().combselectat != null)
-        {
-            nul.GetComponent<Jucator>().combselectat.GetComponent<ParticleSystem>().Stop();
-        }
-        nul.GetComponent<Jucator>().combselectat = nou;
-        nul.GetComponent<Jucator>().combselectat.GetComponent<ParticleSystem>().Play();
-        foreach (GameObject g in nul.GetComponent<Jucator>().slotabil)
-        {
-            g.SetActive(false);
-        }
-        int i = 0;
-        foreach (Abilitate a in transform.gameObject.GetComponent<Combatant>().GetClasa().ObtineAbilitati())
-        {
-            nul.GetComponent<Jucator>().slotabil[i].SetActive(true);
-            nul.GetComponent<Jucator>().slotabil[i].GetComponent<Image>().sprite = a.GetPictograma();
-            i++;
-        }
-    }
     void OnMouseDown()
     {
-        EvidentiereCombatantSelectat(transform.gameObject);
+        if(nul.GetComponent<Combat>().tip_tinta==tip)
+        {
+            nul.GetComponent<Combat>().tip_tinta = -1;
+            Debug.Log("Am tintit un inamic");
+            nul.GetComponent<Combat>().UrmatorulCombatant();
+        }
     }
 }

@@ -396,6 +396,7 @@
     <Compile Include="Assets\Scripturi\Audio.cs" />
     <Compile Include="Assets\Scripturi\CameraScript.cs" />
     <Compile Include="Assets\Scripturi\ColorToPrefab.cs" />
+    <Compile Include="Assets\Scripturi\Combat.cs" />
     <Compile Include="Assets\Scripturi\Combatant.cs" />
     <Compile Include="Assets\Scripturi\George\Calcul.cs" />
     <Compile Include="Assets\Scripturi\George\EMPTY.cs" />

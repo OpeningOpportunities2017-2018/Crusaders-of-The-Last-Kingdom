@@ -13,22 +13,18 @@ public class Jucator : MonoBehaviour
      * Abilitate=>Clasa=>Aliat si Inamic=>Combatant
 	 */
     //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
-    public static List<Abilitate> abilitati;
-    public List<Sprite> picabilitati;
-    public static Dictionary<string, Clasa> clase;
-    public List<GameObject> combatanti;
-    public Queue<GameObject> ture;
-    public List<GameObject> aliati, inamici;
-    public Vector3[,] pozaliati, pozinamici;
-    public GameObject combselectat;//Combatant selectat
+    public static List<Abilitate> abilitati;//Toate abilitatile posibile
+    public List<Sprite> picabilitati;//Pictogramele abilitatilor
+    public static Dictionary<string, Clasa> clase;//Clasele din scena
+    public List<GameObject> combatanti;//Toti combatantii din scena
+    public List<GameObject> aliati, inamici;//Lista cu prefaburile de aliati si inamici
+    public Vector3[,] pozaliati, pozinamici;//Pozitiile de spawnare ale aliatilor si inamicilor
     public static GameObject obnul;//Obiectul cu scripturi
-    public List<GameObject> slotabil;
     void Awake()
     {
         abilitati = new List<Abilitate>();//Toate abilitatile din joc.
         clase = new Dictionary<string, Clasa>();//Clasele de jucatori.
         combatanti = new List<GameObject>();//Toti combatantii din terenul de joc
-        ture = new Queue<GameObject>();//Ordinea combatantilor la atac
         pozaliati = new Vector3[3, 3]; pozinamici = new Vector3[3, 3];//Matrice de pozitii personaje. Nu sterge. Ms
     }
     void Start()
@@ -43,7 +39,6 @@ public class Jucator : MonoBehaviour
         CreareCombatant(0, 0, "Rogue", 100, 5, clase["Rogue"], pozaliati[1,1]);
         CreareCombatant(1, 0, "Rogue inamic", 100, 2, clase["Rogue"], pozinamici[0,2]);
         CreareCombatant(1, 0, "Tank inamic", 100, 4, clase["Tank"], pozinamici[2,0]);
-        InitializareTure();
     }
     void Update()
     {
@@ -70,17 +65,6 @@ public class Jucator : MonoBehaviour
             temp.GetComponent<Combatant>().SeteazaMort(false);
             combatanti.Add(temp);
     }
-    public void ClickPeAbilitate(GameObject buton)
-    {
-        for(int i=0;i<slotabil.Count;i++)
-        {
-            if(slotabil[i]==buton)
-            {
-                Debug.Log(abilitati[i].GetNume());
-                break;
-            }
-        }
-    }
     void InitializarePozitii()
     {
         //Initializare pozitii aliati
@@ -103,14 +87,6 @@ public class Jucator : MonoBehaviour
         pozinamici[2,0] = new Vector3(1f,-0.63f,35.44f);
         pozinamici[2, 1] = new Vector3(1f,-0.63f,31.62f);
         pozinamici[2, 2] = new Vector3(1f,-0.63f,26.8f);
-    }
-    void AdaugaTura(GameObject c)
-    {
-        ture.Enqueue(c);
-    }
-    GameObject UrmatorulCombatant()
-    {
-        return ture.Dequeue();
     }
     void InitializareAbilitati()
     {
@@ -137,32 +113,6 @@ public class Jucator : MonoBehaviour
         temp = new Clasa("Rogue");
         temp.AdaugaAbilitate(abilitati[4]);
         clase.Add("Rogue",temp);
-    }
-    void InitializareTure()
-    {
-        //Copie intr-o lista toti combatantii, ii sorteaza dupa speed si apoi ii baga in coada
-        List<GameObject> temp = new List<GameObject>();
-        GameObject aux;
-        foreach (GameObject g in combatanti)
-        {
-            temp.Add(g);
-        }
-        for (int i = 0; i < temp.Count-1; i++)
-        {
-            for (int j = i + 1; j < temp.Count; j++)
-            {
-                if (temp[i].GetComponent<Combatant>().GetSpeed() < temp[j].GetComponent<Combatant>().GetSpeed())
-                {
-                    aux = temp[i];
-                    temp[i] = temp[j];
-                    temp[j] = aux;
-                }
-            }
-        }
-        foreach (GameObject g in temp)
-        {
-            AdaugaTura(g);
-        }
     }
 }
 public class Clasa
