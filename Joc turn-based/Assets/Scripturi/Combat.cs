@@ -70,7 +70,29 @@ public class Combat : MonoBehaviour
     public void ClickPeAbilitate(int indiceabil)
     {
         Debug.Log(initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetNume());
-        tip_tinta = initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetTarget();
+        if (initiator.GetComponent<Combatant>().GetTip() == 1)
+        {
+            switch(initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetTarget())
+            {
+                case 0:
+                    {
+                        tip_tinta = 1;
+                        break;
+                    }
+                case 1:
+                    {
+                        tip_tinta = 0;
+                        break;
+                    }
+                default:
+                    {
+                        Debug.Log("Ceva nu e bine");
+                        break;
+                    }
+            }
+        }
+        else
+            tip_tinta = initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetTarget();
     }
     void IncarcaAbilitati(GameObject comb)
     {

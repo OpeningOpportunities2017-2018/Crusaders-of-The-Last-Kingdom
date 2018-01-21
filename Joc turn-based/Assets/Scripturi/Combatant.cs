@@ -169,7 +169,7 @@ public class Combatant:MonoBehaviour,ICombatant
         if(nul.GetComponent<Combat>().tip_tinta==tip)
         {
             nul.GetComponent<Combat>().tip_tinta = -1;
-            Debug.Log("Am tintit un inamic");
+            Debug.Log("Am tintit pe cineva ok.");
             nul.GetComponent<Combat>().UrmatorulCombatant();
         }
     }
