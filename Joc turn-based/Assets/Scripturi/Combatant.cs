@@ -166,11 +166,14 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     void OnMouseDown()
     {
-        if(nul.GetComponent<Combat>().tip_tinta==tip)
+        if(nul.GetComponent<InterfataUtilizator>().panouri[0].activeSelf==false)
         {
-            nul.GetComponent<Combat>().tip_tinta = -1;
-            Debug.Log("Am tintit pe cineva ok.");
-            nul.GetComponent<Combat>().UrmatorulCombatant();
+            if (nul.GetComponent<Combat>().tip_tinta == tip)
+            {
+                nul.GetComponent<Combat>().tip_tinta = -1;
+                Debug.Log("Am tintit pe cineva ok.");
+                nul.GetComponent<Combat>().UrmatorulCombatant();
+            }
         }
     }
 }

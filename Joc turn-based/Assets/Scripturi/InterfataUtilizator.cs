@@ -65,6 +65,12 @@ public class InterfataUtilizator : MonoBehaviour
                 Debug.Log("M-am intors in main menu.");
                 SceneManager.LoadScene(0);
             }
+            else if(panouri[1].activeSelf)
+            {
+                Debug.Log("Nu se mai afiseaza optiunile");
+                panouri[1].SetActive(false);
+                panouri[0].SetActive(true);
+            }
         }
     }
     public void ButonStart()
@@ -82,8 +88,12 @@ public class InterfataUtilizator : MonoBehaviour
     }
     public void ButonOptiuni()
     {
+        if(SceneManager.GetActiveScene().buildIndex==1)
+        {
+            panouri[1].SetActive(true);
+            panouri[0].SetActive(false);
+        }
         Debug.Log("Am incarcat optiunile");
-        panouri[1].SetActive(true);
     }
     public void ButonCredite()
     {
