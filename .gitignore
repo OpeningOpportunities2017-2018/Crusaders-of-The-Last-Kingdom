@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.dwlt
 *.pidb.meta
 *.pdb.meta
@@ -12,3 +13,6 @@
 *.booproj
 *.svd
 *.pdb
+=======
+
+>>>>>>> 0ae3124035e570db2c332127dc4a5dd5e94d0539
