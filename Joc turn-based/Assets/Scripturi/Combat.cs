@@ -8,10 +8,12 @@ public class Combat : MonoBehaviour
     public Queue<GameObject> ture;
     public GameObject nul;
     public GameObject initiator, tinta;//Cel care initiaza atacul si tinta atacului
-    public int tip_tinta = -1;//Astept playerul sa isi selecteze tinta? Nu? -1 Daca da, aliatul e 0, inamicul 1
-    //Astea is pentru a arata cine urmeaza
+    public int tip_tinta = -1,indiceabilitate=-1;//Astept playerul sa isi selecteze tinta? Nu? -1 Daca da, aliatul e 0, inamicul 1
+    //Astea is pentru a arata cine urmeaza si detalii despre jucatorul cu mouse-ul peste el
     string text_upcoming = "Următorul combatant:{0}";
+    public string text_detalii = "Nume:{0}\nClasa:{1}\nTip:{2}\nViata:{3}\nSpeed:{4}";
     public GameObject obiect_upcoming;
+    public GameObject obiect_detalii;
     //
     public List<GameObject> slotabil;//Sloturile de abilitati
     void Awake()
@@ -70,6 +72,7 @@ public class Combat : MonoBehaviour
     public void ClickPeAbilitate(int indiceabil)
     {
         Debug.Log(initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetNume());
+        indiceabilitate = indiceabil;
         if (initiator.GetComponent<Combatant>().GetTip() == 1)
         {
             switch(initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetTarget())

@@ -7,7 +7,7 @@ using System.Threading;
 public class Manipulatori : MonoBehaviour 
 {
     //Trebuie sa atasezi scriptul de un obiect, de preferat Obiect nul
-	System.Random rand = new System.Random();//Nu sterge. Asta e obiectul care va fi folosit pentru fiecare generare de numar aleator
+	public static System.Random rand = new System.Random();//Nu sterge. Asta e obiectul care va fi folosit pentru fiecare generare de numar aleator
     GameObject g;//Folosit pentru adaugarea aliatilor si inamicilor in listele lor.
     public Vector3 rotatie,directie;//Cum se roteste/misca obiectul de test
     //Schimbare. Propun sa facem functiile de aici de manipulare statice, ca sa nu trebuiasca sa tot cautam obiectul nul. E pentru optimizare

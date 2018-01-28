@@ -170,10 +170,33 @@ public class Combatant:MonoBehaviour,ICombatant
         {
             if (nul.GetComponent<Combat>().tip_tinta == tip)
             {
+                //Aici se intampla ultima etapa a atacului.
                 nul.GetComponent<Combat>().tip_tinta = -1;
-                Debug.Log("Am tintit pe cineva ok.");
-                nul.GetComponent<Combat>().UrmatorulCombatant();
+                //Debug.Log("Am tintit pe cineva ok.");//Mesaj daca tinta este ok.
+                if(nul.GetComponent<Combat>().UrmatorulCombatant().GetComponent<Combatant>().GetTip()==1)
+                {
+                    //Jucatorul a fost un aliat iar acum este un inamic. TODO: Ce trebuie sa faca inamicul?
+                    //Variabilele astea sunt facute pentru a determina aleatoriu un caracter de tintit pentru inamic.
+                    int indiceabilitate;
+                    GameObject tinta;
+                    do
+                    {
+                        tinta = nul.GetComponent<Jucator>().combatanti[Manipulatori.rand.Next(0, nul.GetComponent<Jucator>().combatanti.Count)];
+                    }
+                    while (tinta.GetComponent<Combatant>().GetTip() == 1);
+                    Debug.Log("Posibila tinta pentru acest inamic:"+tinta.GetComponent<Combatant>().GetNume());
+                    //La final, trec peste el.
+                    nul.GetComponent<Combat>().UrmatorulCombatant();
+                }
+                else
+                {
+                    //Jucatorul curent este un aliat. TODO: Ce trebuie sa faca aliatul?
+                }
             }
         }
+    }
+    void OnMouseOver()
+    {
+        nul.GetComponent<Combat>().obiect_detalii.GetComponent<Text>().text = string.Format(nul.GetComponent<Combat>().text_detalii,GetNume(),GetClasa().GetNume(),tip,GetViata(),GetSpeed());
     }
 }
