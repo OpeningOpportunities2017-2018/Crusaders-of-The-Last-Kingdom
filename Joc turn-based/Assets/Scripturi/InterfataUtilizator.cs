@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class InterfataUtilizator : MonoBehaviour
 {
     /*Lista cu semnificatia fiecarui buton din scena, ordonati in functie de indice, de la 0. Alta ordine sau lipsa butoanelor va genera erori.
@@ -33,6 +34,8 @@ public class InterfataUtilizator : MonoBehaviour
     public List<GameObject> panouri = new List<GameObject>();
     public Dictionary<string, string> engleza = new Dictionary<string, string>();//Aceste dictionare pot fi folosite pentru a traduce usor un text din romana in alta limba. De ex. engleza["Salut"]="Hello"
     int limba = 0, bindex;
+    int indice_buton = 0;
+    GameObject buton_selectat;
     public void ButonExit()
     {
         if(bindex==0)
@@ -110,6 +113,7 @@ public class InterfataUtilizator : MonoBehaviour
         {
             g.SetActive(false);
         }
+        buton_selectat = butoane[0];
 	}
 	void Update ()
     {
@@ -118,7 +122,21 @@ public class InterfataUtilizator : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("Am apasat tasta Escape");
+                indice_buton = -1;
                 panouri[0].SetActive(!panouri[0].activeSelf);
+            }
+            if(panouri[0].activeSelf)
+            {
+                /*if(Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    indice_buton++;
+                    if (indice_buton >= 4)
+                        indice_buton = 0;
+                    buton_selectat = butoane[indice_buton];
+                    buton_selectat.GetComponent<Image>().sprite = buton_selectat.GetComponent<Button>().spriteState.pressedSprite;
+                    Manipulatori.Swap(ref buton_selectat.GetComponent<Image>().sprite, ref buton_selectat.GetComponent<Button>().spriteState.pressedSprite);
+                }
+                */
             }
         }
 	}

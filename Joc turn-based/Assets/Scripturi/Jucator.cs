@@ -34,11 +34,13 @@ public class Jucator : MonoBehaviour
         InitializarePozitii();
         obnul = transform.gameObject;
         //Creez personajele si le pregatesc de lupta
-        CreareCombatant(0, 0, "Priest",100,1,clase["Priest"],pozaliati[0,0]);
-        CreareCombatant(0, 0, "Tank", 100, 3, clase["Tank"], pozaliati[2, 2]);
-        CreareCombatant(0, 0, "Rogue", 100, 5, clase["Rogue"], pozaliati[1,1]);
-        CreareCombatant(1, 0, "Rogue inamic", 100, 2, clase["Rogue"], pozinamici[0,2]);
-        CreareCombatant(1, 0, "Tank inamic", 100, 4, clase["Tank"], pozinamici[2,0]);
+        CreareCombatant(0, 0, "Priest", 500, 1, clase["Priest"], pozaliati[0, 0]);
+        CreareCombatant(0, 0, "Tank", 500, 3, clase["Tank"], pozaliati[2, 2]);
+        CreareCombatant(0, 0, "Rogue", 500, 5, clase["Rogue"], pozaliati[1, 1]);
+        CreareCombatant(1, 0, "Rogue inamic", 500, 7, clase["Rogue"], pozinamici[0, 2]);
+        CreareCombatant(1, 0, "Tank inamic", 500, 4, clase["Tank"], pozinamici[2, 0]);
+        CreareCombatant(1, 0, "Un alt inamic ca oricare altul", 500, 6, clase["Tank"], pozinamici[1, 0]);
+        CreareCombatant(1, 0, "E o zi ca oricare alta", 500, 2, clase["Tank"], pozinamici[1, 2]);
     }
     void Update()
     {
@@ -55,6 +57,7 @@ public class Jucator : MonoBehaviour
             else
             {
                 temp = Instantiate(inamici[prefab], poz, Quaternion.identity);
+                temp.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 temp.name=num+" - Inamic";
             }
             temp.GetComponent<Combatant>().SetTip(tip);
@@ -69,33 +72,33 @@ public class Jucator : MonoBehaviour
     {
         //Initializare pozitii aliati
         pozaliati[0,0] = new Vector3(-4.62f,-0.63f,35.44f);
-        pozaliati[0, 1] = new Vector3(-4.62f,-0.63f,31.62f);
-        pozaliati[0, 2] = new Vector3(-4.62f,-0.63f,26.8f);
-        pozaliati[1,0] = new Vector3(-6.12f,-0.63f,35.44f);
-        pozaliati[1, 1] = new Vector3(-6.12f,-0.63f,31.62f);
-        pozaliati[1, 2] = new Vector3(-6.12f,-0.63f,26.8f);
-        pozaliati[2,0] = new Vector3(-8.34f,-0.63f,35.44f);
-        pozaliati[2, 1] = new Vector3(-8.34f,-0.63f,31.62f);
-        pozaliati[2, 2] = new Vector3(-8.34f,-0.63f,26.8f);
+        pozaliati[0, 1] = new Vector3(-4.62f,-0.63f,23.7f);
+        pozaliati[0, 2] = new Vector3(-4.62f,-0.63f,14.7f);
+        pozaliati[1,0] = new Vector3(-9f,-0.63f,35.44f);
+        pozaliati[1, 1] = new Vector3(-9f,-0.63f, 23.7f);
+        pozaliati[1, 2] = new Vector3(-9f,-0.63f, 14.7f);
+        pozaliati[2,0] = new Vector3(-13.5f,-0.63f,35.44f);
+        pozaliati[2, 1] = new Vector3(-13.5f,-0.63f, 23.7f);
+        pozaliati[2, 2] = new Vector3(-13.5f,-0.63f, 14.7f);
         //Initializare pozitii inamici
-        pozinamici[0,0] = new Vector3(3.54f,-0.63f,35.44f);
-        pozinamici[0, 1] = new Vector3(3.54f,-0.63f,31.62f);
-        pozinamici[0, 2] = new Vector3(3.54f,-0.63f,26.8f);
-        pozinamici[1,0] = new Vector3(2.35f,-0.63f,35.44f);
-        pozinamici[1, 1] = new Vector3(2.35f,-0.63f,31.62f);
-        pozinamici[1, 2] = new Vector3(2.35f,-0.63f,26.8f);
+        pozinamici[0,0] = new Vector3(8.26f,-0.63f,35.44f);
+        pozinamici[0, 1] = new Vector3(8.26f,-0.63f,23.7f);
+        pozinamici[0, 2] = new Vector3(8.26f,-0.63f,14.7f);
+        pozinamici[1,0] = new Vector3(13f,-0.63f,35.44f);
+        pozinamici[1, 1] = new Vector3(13f,-0.63f,31.62f);
+        pozinamici[1, 2] = new Vector3(13f,-0.63f, 14.7f);
         pozinamici[2,0] = new Vector3(1f,-0.63f,35.44f);
-        pozinamici[2, 1] = new Vector3(1f,-0.63f,31.62f);
-        pozinamici[2, 2] = new Vector3(1f,-0.63f,26.8f);
+        pozinamici[2, 1] = new Vector3(1f,-0.63f,23.7f);
+        pozinamici[2, 2] = new Vector3(1f,-0.63f, 14.7f);
     }
     void InitializareAbilitati()
     {
         //Aici se vor introduce manuale toate abilitatile posibile din joc.
         //Abilitatile de aici is momentan de test, dar cine stie
-        abilitati.Add(new Abilitate(picabilitati[3],"Drojdeala de jale", 50, 0));
-        abilitati.Add(new Abilitate(picabilitati[2], "Dau heal cu borcanul", 40, 0));
-        abilitati.Add(new Abilitate(picabilitati[4], "Conditia taranului", 45, 1));
-        abilitati.Add(new Abilitate(picabilitati[0], "Divine revelation", 0, 1));
+        abilitati.Add(new Abilitate(picabilitati[3],"Drojdeala de jale", 50,0));
+        abilitati.Add(new Abilitate(picabilitati[2], "Dau heal cu borcanul", 40,0));
+        abilitati.Add(new Abilitate(picabilitati[4], "Conditia taranului", 45,1));
+        abilitati.Add(new Abilitate(picabilitati[0], "Divine revelation", 67,1));
         abilitati.Add(new Abilitate(picabilitati[1], "Distrugator de Project Manager",100,1));
     }
     void InitializareClase()
@@ -174,7 +177,7 @@ public class Abilitate
 {
     Sprite pictograma;
     int damage;
-    int target;//0-Aliat,1-Inamic
+    int tip_tinta = 1;//Se ia in functie de aliat. 0-Aliat 1-Inamic
 	string nume;
     public void SetNume(string s)
     {
@@ -192,24 +195,23 @@ public class Abilitate
     {
         return damage;
     }
-    public void SetTarget(int t)
+    public int GetTinta()
     {
-        target = t;
+        return tip_tinta;
     }
-    public int GetTarget()
+    public void SetTinta(int t)
     {
-        return target;
+        tip_tinta = t;
     }
-    public void FacCeEDeFacut(GameObject target)//Aici mai e de munca, dar se vor face cazuri particulare
+    public void FacCeEDeFacut(int tip,GameObject target)//Aici mai e de munca, dar se vor face cazuri particulare
     {
-        switch(target.GetComponent<Combatant>().GetTip())
+        //tip este tipul combatantului care initiaza atacul.
+        if (tip != target.GetComponent<Combatant>().GetTip())
         {
-            default:
-                {
-                    target.GetComponent<Combatant>().SetViata(target.GetComponent<Combatant>().GetViata() - damage);
-                    break;
-                }
+            target.GetComponent<Combatant>().GiveViata(-damage);
         }
+        else
+            target.GetComponent<Combatant>().GiveViata(damage);
     }
     public void SetPictograma(Sprite pict)
     {
@@ -219,11 +221,20 @@ public class Abilitate
     {
         return pictograma;
     }
-    public Abilitate(Sprite pict,string num="Abilitate",int dmg=10,int trg=1)
+    public Abilitate(Sprite pict,string num="Abilitate",int dmg=10,int tinta=1)
     {
         nume = num;
         damage = dmg;
-        target = trg;
         pictograma = pict;
+        tip_tinta = tinta;
     }
 }
+/*
+        CreareCombatant(0, 0, "Priest",500,1,clase["Priest"],pozaliati[0,0]);
+        CreareCombatant(0, 0, "Tank", 500, 3, clase["Tank"], pozaliati[2, 2]);
+        CreareCombatant(0, 0, "Rogue", 500, 5, clase["Rogue"], pozaliati[1,1]);
+        CreareCombatant(1, 0, "Rogue inamic", 500, 7, clase["Rogue"], pozinamici[0,2]);
+        CreareCombatant(1, 0, "Tank inamic", 500, 4, clase["Tank"], pozinamici[2,0]);
+        CreareCombatant(1, 0, "Un alt inamic ca oricare altul", 500, 6, clase["Tank"], pozinamici[1, 0]);
+        CreareCombatant(1, 0, "E o zi ca oricare alta", 500, 2, clase["Tank"], pozinamici[1, 2]);
+*/

@@ -10,9 +10,10 @@ public class Manipulatori : MonoBehaviour
 	public static System.Random rand = new System.Random();//Nu sterge. Asta e obiectul care va fi folosit pentru fiecare generare de numar aleator
     GameObject g;//Folosit pentru adaugarea aliatilor si inamicilor in listele lor.
     public Vector3 rotatie,directie;//Cum se roteste/misca obiectul de test
-    //Schimbare. Propun sa facem functiile de aici de manipulare statice, ca sa nu trebuiasca sa tot cautam obiectul nul. E pentru optimizare
-    //Scriptul asta trebuie sa fie atasat de un obiect nul, pentru fiecare scena in parte
-	void Start () 
+                                    //Schimbare. Propun sa facem functiile de aici de manipulare statice, ca sa nu trebuiasca sa tot cautam obiectul nul. E pentru optimizare
+                                    //Scriptul asta trebuie sa fie atasat de un obiect nul, pentru fiecare scena in parte
+    public float timp_intre_atacuri = 5;
+    void Start () 
 	{
         
 	}
@@ -39,6 +40,12 @@ public class Manipulatori : MonoBehaviour
                     break;
                 }
         }
+    }
+    public static void Swap(ref Sprite a,ref Sprite b)
+    {
+        Sprite temp = a;
+        a = b;
+        b = temp;
     }
 	static void SchimbaCuloare(GameObject obiect,Color culoare)//Merge daca imaginea nu face parte din UI (nu e randata cu Image, ci cu Sprite Renderer)
 	{

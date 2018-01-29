@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 //ICombatant te obliga si te face sa nu uiti ce functii ai de bagat, deci mai intai bagi aici antetul unei functii comune, si dup-aia o definesti
 public interface ICombatant 
 {
@@ -166,34 +167,17 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     void OnMouseDown()
     {
-        if(nul.GetComponent<InterfataUtilizator>().panouri[0].activeSelf==false)
+        if (nul.GetComponent<InterfataUtilizator>().panouri[0].activeSelf == false&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetTip()==0&&nul.GetComponent<Combat>().tip_tinta!=-1)
         {
-            if (nul.GetComponent<Combat>().tip_tinta == tip)
-            {
-                //Aici se intampla ultima etapa a atacului.
-                nul.GetComponent<Combat>().tip_tinta = -1;
-                //Debug.Log("Am tintit pe cineva ok.");//Mesaj daca tinta este ok.
-                if(nul.GetComponent<Combat>().UrmatorulCombatant().GetComponent<Combatant>().GetTip()==1)
-                {
-                    //Jucatorul a fost un aliat iar acum este un inamic. TODO: Ce trebuie sa faca inamicul?
-                    //Variabilele astea sunt facute pentru a determina aleatoriu un caracter de tintit pentru inamic.
-                    int indiceabilitate;
-                    GameObject tinta;
-                    do
-                    {
-                        tinta = nul.GetComponent<Jucator>().combatanti[Manipulatori.rand.Next(0, nul.GetComponent<Jucator>().combatanti.Count)];
-                    }
-                    while (tinta.GetComponent<Combatant>().GetTip() == 1);
-                    Debug.Log("Posibila tinta pentru acest inamic:"+tinta.GetComponent<Combatant>().GetNume());
-                    //La final, trec peste el.
-                    nul.GetComponent<Combat>().UrmatorulCombatant();
-                }
-                else
-                {
-                    //Jucatorul curent este un aliat. TODO: Ce trebuie sa faca aliatul?
-                }
-            }
+            Debug.Log("Cineva a dat click pe "+name);
+            StartCoroutine(UltimulPas());
         }
+    }
+    IEnumerator UltimulPas()
+    {
+        nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0,gameObject);
+        yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+        StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
     }
     void OnMouseOver()
     {

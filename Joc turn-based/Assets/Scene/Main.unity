@@ -721,7 +721,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 576741416}
   m_LocalRotation: {x: 0.13485095, y: 0, z: 0, w: 0.9908659}
-  m_LocalPosition: {x: -1.45, y: 5.7, z: 8.37}
+  m_LocalPosition: {x: -0.1, y: 9.2, z: -20.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 561812228}
@@ -1810,9 +1810,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d7bdd8f8a79a7614391bfec7d9ffbfb9, type: 3}
   combatanti: []
   aliati:
-  - {fileID: 1391037265895642, guid: cc4b1a900f11219478ce5271cd1ba10f, type: 2}
+  - {fileID: 1880971195593060, guid: 67bc84c0341f16f4fba5700ebd36506f, type: 2}
   inamici:
-  - {fileID: 1921656230265882, guid: 528726ad08ff51445b2e9bdd5bb638a6, type: 2}
+  - {fileID: 1174603089977342, guid: ce931315168440645bbb3b090014894a, type: 2}
 --- !u!4 &1354472530
 Transform:
   m_ObjectHideFlags: 0
@@ -1839,6 +1839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatie: {x: 0, y: 0, z: 0}
   directie: {x: 0, y: 0, z: 0}
+  timp_intre_atacuri: 2
 --- !u!114 &1354472532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,7 +1851,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc62c2f6b89acf46b26a11c1a304eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  butoane: []
+  butoane:
+  - {fileID: 1389647660}
+  - {fileID: 157998566}
+  - {fileID: 1167318180}
+  - {fileID: 634193705}
   panouri:
   - {fileID: 1055001952}
   - {fileID: 901344427}
