@@ -76,6 +76,10 @@ public class InterfataUtilizator : MonoBehaviour
             }
         }
     }
+    public void ButonIntoarcere()
+    {
+        panouri[0].SetActive(false);
+    }
     public void ButonStart()
     {
         if(SceneManager.GetActiveScene().buildIndex==0)
