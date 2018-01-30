@@ -1161,7 +1161,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 24350809b4008944b894d6c86542f9f9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1916,8 +1916,11 @@ MonoBehaviour:
   combatanti: []
   aliati:
   - {fileID: 1880971195593060, guid: 67bc84c0341f16f4fba5700ebd36506f, type: 2}
+  - {fileID: 1609879833507210, guid: 0ecd9ac4ca694ad4397d5cbf30d46d39, type: 2}
+  - {fileID: 1989390710789424, guid: 2045905f1a77e494ca2ae688b1414bbb, type: 2}
   inamici:
   - {fileID: 1174603089977342, guid: ce931315168440645bbb3b090014894a, type: 2}
+  - {fileID: 1152608742176758, guid: 9fc541db88e00ea4eafab336eb4e6e95, type: 2}
 --- !u!4 &1354472530
 Transform:
   m_ObjectHideFlags: 0

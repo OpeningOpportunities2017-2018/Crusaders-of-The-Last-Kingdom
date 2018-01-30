@@ -35,12 +35,12 @@ public class Jucator : MonoBehaviour
         obnul = transform.gameObject;
         //Creez personajele si le pregatesc de lupta
         CreareCombatant(0, 0, "Priest", 500, 1, clase["Priest"], pozaliati[0, 0]);
-        CreareCombatant(0, 0, "Tank", 500, 3, clase["Tank"], pozaliati[2, 2]);
-        CreareCombatant(0, 0, "Rogue", 500, 5, clase["Rogue"], pozaliati[1, 1]);
-        CreareCombatant(1, 0, "Rogue inamic", 500, 7, clase["Rogue"], pozinamici[0, 2]);
+        CreareCombatant(0, 1, "Tank", 500, 3, clase["Tank"], pozaliati[2, 2]);
+        CreareCombatant(0, 2, "Rogue", 500, 5, clase["Rogue"], pozaliati[1, 1]);
+        CreareCombatant(1, 1, "Rogue inamic", 500, 7, clase["Rogue"], pozinamici[0, 2]);
         CreareCombatant(1, 0, "Tank inamic", 500, 4, clase["Tank"], pozinamici[2, 0]);
-        CreareCombatant(1, 0, "Un alt inamic ca oricare altul", 500, 6, clase["Tank"], pozinamici[1, 0]);
-        CreareCombatant(1, 0, "E o zi ca oricare alta", 500, 2, clase["Tank"], pozinamici[1, 2]);
+        CreareCombatant(1, 1, "Un alt inamic ca oricare altul", 500, 6, clase["Tank"], pozinamici[1, 0]);
+        CreareCombatant(1, 1, "E o zi ca oricare alta", 500, 2, clase["Tank"], pozinamici[1, 2]);
     }
     void Update()
     {
@@ -57,7 +57,7 @@ public class Jucator : MonoBehaviour
             else
             {
                 temp = Instantiate(inamici[prefab], poz, Quaternion.identity);
-                temp.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                //temp.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 temp.name=num+" - Inamic";
             }
             temp.GetComponent<Combatant>().SetTip(tip);

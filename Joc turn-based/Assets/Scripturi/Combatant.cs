@@ -167,7 +167,7 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     void OnMouseDown()
     {
-        if (nul.GetComponent<InterfataUtilizator>().panouri[0].activeSelf == false&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetTip()==0&&nul.GetComponent<Combat>().tip_tinta!=-1)
+        if (nul.GetComponent<InterfataUtilizator>().panouri[0].activeSelf == false&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetTip()==0&&nul.GetComponent<Combat>().tip_tinta!=-1&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].GetTinta()==nul.GetComponent<Combat>().tip_tinta&&nul.GetComponent<Combat>().initiator!=gameObject)
         {
             Debug.Log("Cineva a dat click pe "+name);
             StartCoroutine(UltimulPas());
@@ -175,9 +175,10 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     IEnumerator UltimulPas()
     {
-        nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0,gameObject);
+        nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
         yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
         StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+        nul.GetComponent<Combat>().tip_tinta = -1;
     }
     void OnMouseOver()
     {

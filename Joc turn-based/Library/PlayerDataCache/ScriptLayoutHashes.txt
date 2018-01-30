@@ -82,7 +82,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 3ecea0c2e43f5d97a17c441bfcf59a7d Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingBehaviour
-5cdbeb5970f249251715fdf36c49b63a Assembly-CSharp.dll:.Combat
+3f3afeb8eb4ab1a9554682ee951e6436 Assembly-CSharp.dll:.Combat
 d8ef4cc8cc122027386e51533904c3eb Assembly-CSharp.dll:.Audio
 c0a7d51c9362c415b104d8da8cf7e657 Assembly-CSharp.dll:DragonBones.UnityUGUIDisplay
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -167,6 +167,6 @@ fa2e9ec57ff8ab377a63804257178220 Assembly-CSharp.dll:.CameraScript
 475bc68786fc2ecffb9d41b73faf514c Assembly-CSharp.dll:.ReplaceSlotDisplay
 f5211229bcfbf8e592a62a8bd72fb0cb Assembly-CSharp.dll:.Calcul
 40d8b433e30603665013aeb24cc3d361 Assembly-CSharp.dll:.InterfataUtilizator
-d01b57e34033d99c9a1cc33027903a7f Assembly-CSharp.dll:.Manipulatori
+24a7f71084fa11fc58e6324cd2444283 Assembly-CSharp.dll:.Manipulatori
 92ec000703f0be398e232421464690d9 Assembly-CSharp.dll:DragonBones.UnityBone
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:DragonBones.UnityCombineMesh
