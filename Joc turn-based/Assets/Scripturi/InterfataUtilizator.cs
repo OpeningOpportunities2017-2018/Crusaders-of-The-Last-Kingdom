@@ -76,6 +76,15 @@ public class InterfataUtilizator : MonoBehaviour
             }
         }
     }
+    public bool EsteVreunPanouActiv()
+    {
+        foreach(GameObject o in panouri)
+        {
+            if (o.activeSelf)
+                return true;
+        }
+        return false;
+    }
     public void ButonIntoarcere()
     {
         panouri[0].SetActive(false);
