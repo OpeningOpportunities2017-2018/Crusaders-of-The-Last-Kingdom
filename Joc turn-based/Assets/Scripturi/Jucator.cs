@@ -29,18 +29,22 @@ public class Jucator : MonoBehaviour
     }
     void Start()
     {
+        VerificareEroriDeAmplasare();
         InitializareAbilitati();
         InitializareClase();
         InitializarePozitii();
         obnul = transform.gameObject;
         //Creez personajele si le pregatesc de lupta
-        CreareCombatant(0, 0, "Priest", 500, 1, clase["Priest"], pozaliati[0, 0]);
-        CreareCombatant(0, 1, "Tank", 500, 3, clase["Tank"], pozaliati[2, 2]);
-        CreareCombatant(0, 2, "Rogue", 500, 5, clase["Rogue"], pozaliati[1, 1]);
-        CreareCombatant(1, 1, "Rogue inamic", 500, 7, clase["Rogue"], pozinamici[0, 2]);
-        CreareCombatant(1, 0, "Tank inamic", 500, 4, clase["Tank"], pozinamici[2, 0]);
-        CreareCombatant(1, 1, "Un alt inamic ca oricare altul", 500, 6, clase["Tank"], pozinamici[1, 0]);
-        CreareCombatant(1, 1, "E o zi ca oricare alta", 500, 2, clase["Tank"], pozinamici[1, 2]);
+        //De mentionat e faptul ca lipsa unui personaj in scena va provoca o eroare
+        CreareCombatant(0, 1, null, 100, 2, clase["Arcas"], pozaliati[0, 0]);
+        CreareCombatant(0, 3, null, 100, 4, clase["Cavaler(a)"], pozaliati[1, 1]);
+        CreareCombatant(0, 4, null, 200, 6, clase["Preoteasa"], pozaliati[2, 2]);
+        CreareCombatant(0, 1, "Arcas aliat 2", 150, 8, clase["Arcas"], pozaliati[2, 0]);
+        CreareCombatant(1, 0, null, 300, 9, clase["Broscoi"], pozinamici[0, 0]);
+        CreareCombatant(1, 4, null, 255, 7, clase["Preoteasa"], pozinamici[2, 0]);
+        CreareCombatant(1, 2, null, 150, 5, clase["Cavaler"], pozinamici[1, 1]);
+        CreareCombatant(1, 3, null, 400, 3, clase["Cavaler(a)"], pozinamici[1, 2]);
+        CreareCombatant(1, 4, "Preoteasa inamic 2", 500, 1, clase["Preoteasa"], pozinamici[2, 2]);
     }
     void Update()
     {
@@ -52,14 +56,24 @@ public class Jucator : MonoBehaviour
             if (tip == 0)
             {
                 temp = Instantiate(aliati[prefab], poz, Quaternion.identity);
-                temp.name=num+" - Aliat";
+                if(num==null)
+                {
+                    num = c.GetNume() + " - Aliat";
+                }
+                else
+                    temp.name=num+" - Aliat";
             }
             else
             {
                 temp = Instantiate(inamici[prefab], poz, Quaternion.identity);
-                //temp.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-                temp.name=num+" - Inamic";
+                temp.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            if (num == null)
+            {
+                num = c.GetNume() + " - Inamic";
             }
+            else
+                temp.name = num + " - Inamic";
+        }
             temp.GetComponent<Combatant>().SetTip(tip);
             temp.GetComponent<Combatant>().SetClasa(c);
             temp.GetComponent<Combatant>().SetViata(viata);
@@ -71,25 +85,25 @@ public class Jucator : MonoBehaviour
     void InitializarePozitii()
     {
         //Initializare pozitii aliati
-        pozaliati[0,0] = new Vector3(-4.62f,-0.63f,35.44f);
-        pozaliati[0, 1] = new Vector3(-4.62f,-0.63f,23.7f);
-        pozaliati[0, 2] = new Vector3(-4.62f,-0.63f,14.7f);
-        pozaliati[1,0] = new Vector3(-9f,-0.63f,35.44f);
-        pozaliati[1, 1] = new Vector3(-9f,-0.63f, 23.7f);
-        pozaliati[1, 2] = new Vector3(-9f,-0.63f, 14.7f);
-        pozaliati[2,0] = new Vector3(-13.5f,-0.63f,35.44f);
-        pozaliati[2, 1] = new Vector3(-13.5f,-0.63f, 23.7f);
-        pozaliati[2, 2] = new Vector3(-13.5f,-0.63f, 14.7f);
+        pozaliati[0,0] = new Vector3(-12.5f,44.2f,-4.7f);
+        pozaliati[0, 1] = new Vector3(-29f,44.2f,-4.7f);
+        pozaliati[0, 2] = new Vector3(-46f,44.2f,-4.7f);
+        pozaliati[1,0] = new Vector3(-12.5f, 44.2f, -68.3f);
+        pozaliati[1, 1] = new Vector3(-29f, 44.2f, -68.3f);
+        pozaliati[1, 2] = new Vector3(-46f, 44.2f, -68.3f);
+        pozaliati[2,0] = new Vector3(-12.5f, 44.2f, -133f);
+        pozaliati[2, 1] = new Vector3(-29f, 44.2f, -133f);
+        pozaliati[2, 2] = new Vector3(-46f, 44.2f, -133f);
         //Initializare pozitii inamici
-        pozinamici[0,0] = new Vector3(8.26f,-0.63f,35.44f);
-        pozinamici[0, 1] = new Vector3(8.26f,-0.63f,23.7f);
-        pozinamici[0, 2] = new Vector3(8.26f,-0.63f,14.7f);
-        pozinamici[1,0] = new Vector3(13f,-0.63f,35.44f);
-        pozinamici[1, 1] = new Vector3(13f,-0.63f,31.62f);
-        pozinamici[1, 2] = new Vector3(13f,-0.63f, 14.7f);
-        pozinamici[2,0] = new Vector3(1f,-0.63f,35.44f);
-        pozinamici[2, 1] = new Vector3(1f,-0.63f,23.7f);
-        pozinamici[2, 2] = new Vector3(1f,-0.63f, 14.7f);
+        pozinamici[0, 0] = new Vector3(13f, 44.2f, -4.7f);
+        pozinamici[0, 1] = new Vector3(31f, 44.2f, -4.7f);
+        pozinamici[0, 2] = new Vector3(50f, 44.2f, -4.7f);
+        pozinamici[1, 0] = new Vector3(13f, 44.2f, -68.3f);
+        pozinamici[1, 1] = new Vector3(31f, 44.2f, -68.3f);
+        pozinamici[1, 2] = new Vector3(50f, 44.2f, -68.3f);
+        pozinamici[2, 0] = new Vector3(13f, 44.2f, -133f);
+        pozinamici[2, 1] = new Vector3(31f, 44.2f, -133f);
+        pozinamici[2, 2] = new Vector3(50f, 44.2f, -133f);
     }
     void InitializareAbilitati()
     {
@@ -106,16 +120,39 @@ public class Jucator : MonoBehaviour
         //Aici se vor introduce manual toate clasele posibile din joc, folosind functiile de setare atribute.
         //Clasele de mai jos is momentan de test, dar din nou, cine stie
         Clasa temp;
-        temp = new Clasa("Tank");
-        temp.AdaugaAbilitate(abilitati[0]);
-        temp.AdaugaAbilitate(abilitati[1]);
-        clase.Add("Tank",temp);
-        temp = new Clasa("Priest");
+        temp = new Clasa("Arcas");
+        temp.AdaugaAbilitati(2, 4);
+        clase.Add("Arcas", temp);
+        temp = new Clasa("Broscoi");
+        temp.AdaugaAbilitati(0, 4);
+        clase.Add("Broscoi", temp);
+        temp = new Clasa("Cavaler");
+        temp.AdaugaAbilitati(0, 0);
+        temp.AdaugaAbilitati(3, 3);
+        temp.AdaugaAbilitati(2, 2);
+        clase.Add("Cavaler",temp);
+        temp = new Clasa("Cavaler(a)");
         temp.AdaugaAbilitati(0, 3);
-        clase.Add("Priest",temp);
-        temp = new Clasa("Rogue");
-        temp.AdaugaAbilitate(abilitati[4]);
-        clase.Add("Rogue",temp);
+        clase.Add("Cavaler(a)", temp);
+        temp = new Clasa("Preoteasa");
+        temp.AdaugaAbilitati(0, 2);
+        temp.AdaugaAbilitati(4, 4);
+        clase.Add("Preoteasa", temp);
+
+    }
+    void VerificareEroriDeAmplasare()
+    {
+        foreach(GameObject g in aliati)
+        {
+            try
+            {
+                g.GetComponent<Combatant>();
+            }
+            catch(Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
     }
 }
 public class Clasa
