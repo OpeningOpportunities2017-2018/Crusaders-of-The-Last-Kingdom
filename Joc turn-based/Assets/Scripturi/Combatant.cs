@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using DragonBones;
 //ICombatant te obliga si te face sa nu uiti ce functii ai de bagat, deci mai intai bagi aici antetul unei functii comune, si dup-aia o definesti
 public interface ICombatant 
 {
@@ -81,18 +82,20 @@ public class Combatant:MonoBehaviour,ICombatant
         {
             if (!a.EsteMort())
             {
-                a.SetViata(a.GetViata() + v);
                 if (a.GetViata() <= 0)
                     a.SeteazaMort(true);
+                else
+                    a.SetViata(a.GetViata() + v);
             }
         }
         else if (tip == 1)
         {
             if (!i.EsteMort())
             {
-                i.SetViata(i.GetViata() + v);
                 if (i.GetViata() <= 0)
                     i.SeteazaMort(true);
+                else
+                    i.SetViata(i.GetViata() + v);
             }
         }
     }
@@ -175,13 +178,19 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     IEnumerator UltimulPas()
     {
-        nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
-        yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-        StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
-        nul.GetComponent<Combat>().tip_tinta = -1;
+        if(nul.GetComponent<Combat>().pot_ataca==true&&GetViata()>0)
+        {
+            nul.GetComponent<Combat>().pot_ataca = false;
+            nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
+            gameObject.GetComponent<ParticleSystem>().Play();
+            nul.GetComponent<Combat>().tinta = gameObject;
+            yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+            StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+            nul.GetComponent<Combat>().tip_tinta = -1;
+        }
     }
     void OnMouseOver()
     {
-        nul.GetComponent<Combat>().obiect_detalii.GetComponent<Text>().text = string.Format(nul.GetComponent<Combat>().text_detalii,GetNume(),GetClasa().GetNume(),tip,GetViata(),GetSpeed());
+        nul.GetComponent<Combat>().obiect_detalii.GetComponent<Text>().text = string.Format(nul.GetComponent<Combat>().text_detalii,GetNume(),GetClasa().GetNume(),GetTip(),GetViata(),GetSpeed());
     }
 }

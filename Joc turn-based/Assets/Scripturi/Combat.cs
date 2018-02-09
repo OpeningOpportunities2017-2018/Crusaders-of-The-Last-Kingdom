@@ -9,6 +9,7 @@ public class Combat : MonoBehaviour
     public GameObject nul;
     public GameObject initiator, tinta;//Cel care initiaza atacul si tinta atacului
     public int tip_tinta = -1,indiceabilitate=-1;//Astept playerul sa isi selecteze tinta? Nu? -1 Daca da, aliatul e 0, inamicul 1
+    public bool pot_ataca = true;
     //Astea is pentru a arata cine urmeaza si detalii despre jucatorul cu mouse-ul peste el
     string text_upcoming = "Următorul combatant:{0}";
     public string text_detalii = "Nume:{0}\nClasa:{1}\nTip:{2}\nViata:{3}\nSpeed:{4}";
@@ -32,6 +33,9 @@ public class Combat : MonoBehaviour
     public IEnumerator UrmatorulCombatant()
     {
         GameObject temp = ture.Dequeue();
+        pot_ataca = true;
+        if(tinta!=null)
+            tinta.GetComponent<ParticleSystem>().Stop();
         initiator = temp;
         //Am scos jucatorul din coada. Ma ocup de el
         ture.LastOrDefault().GetComponent<ParticleSystem>().Stop();
@@ -49,7 +53,6 @@ public class Combat : MonoBehaviour
             //Realizez aici atacul inamicului
             int indiceabilitate = Manipulatori.rand.Next(0,temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati().Count);
             Debug.Log(indiceabilitate);
-            GameObject tinta;
             //Am generat o abilitate aleatorie. Acum vad care e tinta
             if(temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetTinta()==0)
             {
@@ -73,6 +76,7 @@ public class Combat : MonoBehaviour
                 Debug.Log("Inamicul " + initiator.GetComponent<Combatant>().GetNume() + " a dat viata inamicului " + tinta.GetComponent<Combatant>().GetNume() + " cu abilitatea " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetNume() + " si damage " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetDamage());
                 //Debug.Log(tinta.GetComponent<Combatant>().GetNume());
             }
+            tinta.GetComponent<ParticleSystem>().Play();
             initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].FacCeEDeFacut(1,tinta);
             AdaugaTura(temp);
             yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
@@ -108,8 +112,11 @@ public class Combat : MonoBehaviour
     public void ClickPeAbilitate(int indiceabil)
     {
         //Debug.Log(initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetNume());
-        indiceabilitate = indiceabil;
-        tip_tinta = initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetTinta();
+        if(pot_ataca)
+        {
+            indiceabilitate = indiceabil;
+            tip_tinta = initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetTinta();
+        }
     }
     void IncarcaAbilitati(GameObject comb)
     {

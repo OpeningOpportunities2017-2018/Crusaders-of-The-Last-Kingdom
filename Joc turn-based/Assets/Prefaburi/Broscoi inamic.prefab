@@ -222,7 +222,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1701966957068730}
   m_LocalRotation: {x: 0, y: 0, z: 0.6992875, w: 0.71484065}
-  m_LocalPosition: {x: 0.0000045427687, y: 7.908567, z: -0.004}
+  m_LocalPosition: {x: 0.00003034555, y: 7.8195233, z: -0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4984814093275690}
@@ -273,9 +273,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422513542647652}
-  m_LocalRotation: {x: 0, y: 0, z: 0.03311148, w: 0.9994517}
-  m_LocalPosition: {x: 3.4404733, y: 1.9771693, z: 0}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.003538243, w: 0.99999374}
+  m_LocalPosition: {x: 3.167042, y: 2.2400506, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children: []
   m_Father: {fileID: 4984814093275690}
   m_RootOrder: 0
@@ -286,8 +286,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790256615990162}
-  m_LocalRotation: {x: 0, y: 0, z: 0.02778973, w: 0.99961376}
-  m_LocalPosition: {x: -4.549522, y: 1.3989184, z: -0.0050000004}
+  m_LocalRotation: {x: 0, y: 0, z: 0.022662984, w: 0.99974316}
+  m_LocalPosition: {x: -4.6058693, y: 1.7460836, z: -0.0050000004}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children: []
   m_Father: {fileID: 4984814093275690}
@@ -340,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 1442618978107366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.5, y: 44.2, z: -4.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 4316394407293468}
   - {fileID: 4004545379745690}
@@ -889,7 +889,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1070387714
+  randomSeed: 1844909104
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1332,14 +1332,14 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 0
+    type: 2
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: -17.3, z: 0}
+    m_Rotation: {x: 90, y: 0, z: 0}
     m_Scale: {x: 8, y: 8, z: 5}
     placementMode: 0
     m_MeshMaterialIndex: 0

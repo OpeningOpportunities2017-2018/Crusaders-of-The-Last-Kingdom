@@ -26,6 +26,7 @@ public class Jucator : MonoBehaviour
         clase = new Dictionary<string, Clasa>();//Clasele de jucatori.
         combatanti = new List<GameObject>();//Toti combatantii din terenul de joc
         pozaliati = new Vector3[3, 3]; pozinamici = new Vector3[3, 3];//Matrice de pozitii personaje. Nu sterge. Ms
+        obnul = transform.gameObject;
     }
     void Start()
     {
@@ -33,7 +34,6 @@ public class Jucator : MonoBehaviour
         InitializareAbilitati();
         InitializareClase();
         InitializarePozitii();
-        obnul = transform.gameObject;
         //Creez personajele si le pregatesc de lupta
         //De mentionat e faptul ca lipsa unui personaj in scena va provoca o eroare
         CreareCombatant(0, 1, null, 100, 2, clase["Arcas"], pozaliati[0, 0]);
@@ -85,25 +85,25 @@ public class Jucator : MonoBehaviour
     void InitializarePozitii()
     {
         //Initializare pozitii aliati
-        pozaliati[0,0] = new Vector3(-12.5f,44.2f,-4.7f);
-        pozaliati[0, 1] = new Vector3(-29f,44.2f,-4.7f);
-        pozaliati[0, 2] = new Vector3(-46f,44.2f,-4.7f);
-        pozaliati[1,0] = new Vector3(-12.5f, 44.2f, -68.3f);
-        pozaliati[1, 1] = new Vector3(-29f, 44.2f, -68.3f);
-        pozaliati[1, 2] = new Vector3(-46f, 44.2f, -68.3f);
-        pozaliati[2,0] = new Vector3(-12.5f, 44.2f, -133f);
-        pozaliati[2, 1] = new Vector3(-29f, 44.2f, -133f);
-        pozaliati[2, 2] = new Vector3(-46f, 44.2f, -133f);
+        pozaliati[0,0] = new Vector3(-31.7f,17f,-60.6f);
+        pozaliati[0, 1] = new Vector3(-50.6f,17f,-42f);
+        pozaliati[0, 2] = new Vector3(-67.4f,17f,-57.6f);
+        pozaliati[1,0] = new Vector3(-35.4f, 17f, -19.6f);
+        pozaliati[1, 1] = new Vector3(-52.5f, 17f, -28.6f);
+        pozaliati[1, 2] = new Vector3(-71.16f, 17f, -27.4f);
+        pozaliati[2,0] = new Vector3(-25.4f, 17f, -7.3f);
+        pozaliati[2, 1] = new Vector3(-44.1f, 18.13f, -12.1f);
+        pozaliati[2, 2] = new Vector3(-62.92f, 17f, -3f);
         //Initializare pozitii inamici
-        pozinamici[0, 0] = new Vector3(13f, 44.2f, -4.7f);
-        pozinamici[0, 1] = new Vector3(31f, 44.2f, -4.7f);
-        pozinamici[0, 2] = new Vector3(50f, 44.2f, -4.7f);
-        pozinamici[1, 0] = new Vector3(13f, 44.2f, -68.3f);
-        pozinamici[1, 1] = new Vector3(31f, 44.2f, -68.3f);
-        pozinamici[1, 2] = new Vector3(50f, 44.2f, -68.3f);
-        pozinamici[2, 0] = new Vector3(13f, 44.2f, -133f);
-        pozinamici[2, 1] = new Vector3(31f, 44.2f, -133f);
-        pozinamici[2, 2] = new Vector3(50f, 44.2f, -133f);
+        pozinamici[0, 0] = new Vector3(66.87f, 68.11f, -9.3f);
+        pozinamici[0, 1] = new Vector3(56.51f, 68.11f, -32.9f);
+        pozinamici[0, 2] = new Vector3(38.8f, 68.11f, -7.9f);
+        pozinamici[1, 0] = new Vector3(70.3f, 68.11f, -71.1f);
+        pozinamici[1, 1] = new Vector3(48f, 68.11f, -58.3f);
+        pozinamici[1, 2] = new Vector3(33.15f, 68.11f, -88.5f);
+        pozinamici[2, 0] = new Vector3(59.4f, 68.11f, -103.1f);
+        pozinamici[2, 1] = new Vector3(45f, 68.11f, -76.9f);
+        pozinamici[2, 2] = new Vector3(40.7f, 68.11f, -128.6f);
     }
     void InitializareAbilitati()
     {
