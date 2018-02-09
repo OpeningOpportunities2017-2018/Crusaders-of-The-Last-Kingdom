@@ -18,6 +18,7 @@ public interface ICombatant
     void SetClasa(Clasa c);
     Clasa GetClasa();
 }
+[System.Serializable]
 public class Combatant:MonoBehaviour,ICombatant
 {
     Aliat a;

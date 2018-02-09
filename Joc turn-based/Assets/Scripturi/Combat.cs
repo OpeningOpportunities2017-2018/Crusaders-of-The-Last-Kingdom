@@ -52,7 +52,7 @@ public class Combat : MonoBehaviour
         {
             //Realizez aici atacul inamicului
             int indiceabilitate = Manipulatori.rand.Next(0,temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati().Count);
-            Debug.Log(indiceabilitate);
+            //Debug.Log(indiceabilitate);
             //Am generat o abilitate aleatorie. Acum vad care e tinta
             if(temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetTinta()==0)
             {
