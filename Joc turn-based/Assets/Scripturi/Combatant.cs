@@ -179,16 +179,19 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     IEnumerator UltimulPas()
     {
-        if(nul.GetComponent<Combat>().pot_ataca==true&&GetViata()>0)
+        if(nul.GetComponent<Combat>().pot_ataca==true&&GetViata()>0&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetViata()>0)
         {
             nul.GetComponent<Combat>().pot_ataca = false;
+            gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
             nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
             gameObject.GetComponent<ParticleSystem>().Play();
             nul.GetComponent<Combat>().tinta = gameObject;
             yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-            StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
-            nul.GetComponent<Combat>().tip_tinta = -1;
+            gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+            nul.GetComponent<Combat>().initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
         }
+        StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+        nul.GetComponent<Combat>().tip_tinta = -1;
     }
     void OnMouseOver()
     {
