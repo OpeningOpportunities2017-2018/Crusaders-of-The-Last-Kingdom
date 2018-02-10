@@ -6,12 +6,13 @@ SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CombineMeshTest
 3cbddf4d1a1bcb787c31a307f1ac8e7a Assembly-CSharp.dll:DragonBones.UnityDragonBonesData
 3ecea0c2e43f5d97a17c441bfcf59a7d Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingBehaviour
-3f3afeb8eb4ab1a9554682ee951e6436 Assembly-CSharp.dll:.Combat
+e5bc47a192564fbdbd519799795c322d Assembly-CSharp.dll:.Combat
 d8ef4cc8cc122027386e51533904c3eb Assembly-CSharp.dll:.Audio
 c0a7d51c9362c415b104d8da8cf7e657 Assembly-CSharp.dll:DragonBones.UnityUGUIDisplay
 27e52e76ef8214d5602acc4f88718eac Assembly-CSharp.dll:DragonBones.UnityArmatureComponent
 9b6322266bdaa3ebfce29bcc2d9e40eb Assembly-CSharp.dll:.LevelGenerator
 d3deb4a0afe1368d3e0d08ce0ee78b13 Assembly-CSharp.dll:.STATUS
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CaraSim
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 1c8e781da35c3e6ed2902b4f8a65e0f2 Assembly-CSharp.dll:.ReplaceDisplayTextureTest
@@ -33,8 +34,10 @@ fa2e9ec57ff8ab377a63804257178220 Assembly-CSharp.dll:.CameraScript
 6450fa39051318a6153f8a064ca9033a Assembly-CSharp.dll:coreElement.CoreElement
 475bc68786fc2ecffb9d41b73faf514c Assembly-CSharp.dll:.ReplaceSlotDisplay
 f5211229bcfbf8e592a62a8bd72fb0cb Assembly-CSharp.dll:.Calcul
+7c48d107a890047a5a27fb42f4d60c62 Assembly-CSharp.dll:.CursorCosmin
 40d8b433e30603665013aeb24cc3d361 Assembly-CSharp.dll:.InterfataUtilizator
 24a7f71084fa11fc58e6324cd2444283 Assembly-CSharp.dll:.Manipulatori
+d9803232d0b34bfdda507b005afb10e2 Assembly-CSharp.dll:.CombatSimulator
 92ec000703f0be398e232421464690d9 Assembly-CSharp.dll:DragonBones.UnityBone
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:DragonBones.UnityCombineMesh
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
@@ -170,3 +173,4 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
+609f5fdc3677f269ddb1e0fcc1837c05 Assembly-CSharp.dll:.OptiuniCosmin
