@@ -409,7 +409,6 @@
     <Compile Include="Assets\Scripturi\Jucator.cs" />
     <Compile Include="Assets\Scripturi\LevelGenerator.cs" />
     <Compile Include="Assets\Scripturi\Manipulatori.cs" />
-    <Compile Include="Assets\Scripturi\OptiuniCosmin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DragonBones\Resources\Shaders\DB_BlendMode_Framebuffer.shader" />
