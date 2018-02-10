@@ -63,7 +63,7 @@ public class InterfataUtilizator : MonoBehaviour
         }
         else if(bindex==1)
         {
-            if(panouri[0].activeSelf)
+            if(panouri[0].activeSelf&&panouri[1].activeSelf==false)
             {
                 Debug.Log("M-am intors in main menu.");
                 SceneManager.LoadScene(0);
@@ -107,7 +107,6 @@ public class InterfataUtilizator : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex==1)
         {
             panouri[1].SetActive(true);
-            panouri[0].SetActive(false);
         }
         else if(SceneManager.GetActiveScene().buildIndex==0)
         {
