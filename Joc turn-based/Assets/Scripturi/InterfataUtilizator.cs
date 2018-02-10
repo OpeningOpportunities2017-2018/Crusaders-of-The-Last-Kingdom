@@ -109,6 +109,10 @@ public class InterfataUtilizator : MonoBehaviour
             panouri[1].SetActive(true);
             panouri[0].SetActive(false);
         }
+        else if(SceneManager.GetActiveScene().buildIndex==0)
+        {
+            panouri[1].SetActive(true);
+        }
         Debug.Log("Am incarcat optiunile");
     }
     public void ButonCredite()
