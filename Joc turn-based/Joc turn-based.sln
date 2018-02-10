@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joc turn-based", "Joc turn-based.csproj", "{FEB7DE0C-9C48-D6B6-63AA-C655A77EBF01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joc turn-based.Editor", "Joc turn-based.Editor.csproj", "{CAF1C908-9541-2EAE-B04F-8C8F90A88433}"
