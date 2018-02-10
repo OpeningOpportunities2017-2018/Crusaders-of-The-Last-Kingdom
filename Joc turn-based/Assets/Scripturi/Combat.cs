@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using DragonBones;
 public class Combat : MonoBehaviour
 {
     public Queue<GameObject> ture;
@@ -76,10 +77,14 @@ public class Combat : MonoBehaviour
                 Debug.Log("Inamicul " + initiator.GetComponent<Combatant>().GetNume() + " a dat viata inamicului " + tinta.GetComponent<Combatant>().GetNume() + " cu abilitatea " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetNume() + " si damage " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetDamage());
                 //Debug.Log(tinta.GetComponent<Combatant>().GetNume());
             }
+            initiator.GetComponent<UnityArmatureComponent>().animation.Play("Attack", 1);
+            tinta.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
             tinta.GetComponent<ParticleSystem>().Play();
             initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].FacCeEDeFacut(1,tinta);
             AdaugaTura(temp);
             yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+            initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+            tinta.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
             StartCoroutine(UrmatorulCombatant());
         }
     }
