@@ -171,15 +171,19 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     void OnMouseDown()
     {
-        if (!nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv()&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetTip()==0&&nul.GetComponent<Combat>().tip_tinta!=-1&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].GetTinta()==nul.GetComponent<Combat>().tip_tinta&&nul.GetComponent<Combat>().initiator!=gameObject)
+        if(nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetTip()==0)
         {
-            Debug.Log("Cineva a dat click pe "+name);
-            StartCoroutine(UltimulPas());
+            //if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].GetTinta() == nul.GetComponent<Combat>().tip_tinta && nul.GetComponent<Combat>().initiator != gameObject)
+            if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator != gameObject)
+            {
+                Debug.Log("Cineva a dat click pe " + name);
+                StartCoroutine(UltimulPas());
+            }
         }
     }
     IEnumerator UltimulPas()
     {
-        if(nul.GetComponent<Combat>().pot_ataca==true&&GetViata()>0&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetViata()>0)
+        if(GetViata()>0&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetViata()>0)
         {
             nul.GetComponent<Combat>().pot_ataca = false;
             gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
