@@ -94,9 +94,9 @@ public class Combat : MonoBehaviour
         }
         else
         {
-            AdaugaTura(temp);
+            Destroy(temp);
             yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-            initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+            //initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
             tinta.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
             StartCoroutine(UrmatorulCombatant());
         }
