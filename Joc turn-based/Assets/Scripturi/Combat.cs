@@ -103,7 +103,7 @@ public class Combat : MonoBehaviour
     }
     bool SuntTotiMorti(int tip)
     {
-        foreach(GameObject g in nul.GetComponent<Jucator>().combatanti)
+        foreach(GameObject g in ture)
         {
             if (g.GetComponent<Combatant>().GetTip() == tip && g.GetComponent<Combatant>().EsteMort() == false)
                 return false;
