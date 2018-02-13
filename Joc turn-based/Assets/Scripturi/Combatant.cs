@@ -174,7 +174,7 @@ public class Combatant:MonoBehaviour,ICombatant
         if(nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetTip()==0)
         {
             //if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].GetTinta() == nul.GetComponent<Combat>().tip_tinta && nul.GetComponent<Combat>().initiator != gameObject)
-            if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator != gameObject)
+            if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator != gameObject&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].GetTinta()==GetTip())
             {
                 Debug.Log("Cineva a dat click pe " + name);
                 StartCoroutine(UltimulPas());
@@ -190,10 +190,10 @@ public class Combatant:MonoBehaviour,ICombatant
             nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
             if(GetViata()<=0)
             {
-                Debug.Log(name);
-                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
                 nul.GetComponent<Combat>().tip_tinta = -1;
                 nul.GetComponent<Combat>().tinta = null;
+                nul.GetComponent<Combat>().pot_ataca = true;
+                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
                 gameObject.SetActive(false);
             }
             else
@@ -203,8 +203,8 @@ public class Combatant:MonoBehaviour,ICombatant
                 yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
                 gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
                 nul.GetComponent<Combat>().initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
                 nul.GetComponent<Combat>().tip_tinta = -1;
+                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
             }
         }
     }
