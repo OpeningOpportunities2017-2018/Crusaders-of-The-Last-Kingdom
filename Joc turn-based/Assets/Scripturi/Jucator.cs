@@ -243,27 +243,12 @@ public class Abilitate
     public void FacCeEDeFacut(int tip,GameObject target)//Aici mai e de munca, dar se vor face cazuri particulare.(Cea mai mare minciuna ever)
     {
         //tip este tipul combatantului care initiaza atacul.
-        if(tip_tinta==target.GetComponent<Combatant>().GetTip())
+        if (tip != target.GetComponent<Combatant>().GetTip())
         {
-            if (tip_tinta == 0)
-            {
-                if (tip != target.GetComponent<Combatant>().GetTip())
-                {
-                    target.GetComponent<Combatant>().GiveViata(-damage);
-                }
-                else
-                    target.GetComponent<Combatant>().GiveViata(damage);
-            }
-            else if (tip_tinta == 1)
-            {
-                if (tip != target.GetComponent<Combatant>().GetTip())
-                {
-                    target.GetComponent<Combatant>().GiveViata(damage);
-                }
-                else
-                    target.GetComponent<Combatant>().GiveViata(-damage);
-            }
+            target.GetComponent<Combatant>().GiveViata(-damage);
         }
+        else
+            target.GetComponent<Combatant>().GiveViata(damage);
     }
     public void SetPictograma(Sprite pict)
     {

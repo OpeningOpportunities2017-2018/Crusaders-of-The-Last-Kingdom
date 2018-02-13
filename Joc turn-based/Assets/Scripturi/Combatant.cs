@@ -183,19 +183,30 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     IEnumerator UltimulPas()
     {
-        if(GetViata()>0&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetViata()>0)
+        if(GetViata()>0)
         {
             nul.GetComponent<Combat>().pot_ataca = false;
             gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
             nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
-            gameObject.GetComponent<ParticleSystem>().Play();
-            nul.GetComponent<Combat>().tinta = gameObject;
-            yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-            gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-            nul.GetComponent<Combat>().initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+            if(GetViata()<=0)
+            {
+                Debug.Log(name);
+                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+                nul.GetComponent<Combat>().tip_tinta = -1;
+                nul.GetComponent<Combat>().tinta = null;
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                gameObject.GetComponent<ParticleSystem>().Play();
+                nul.GetComponent<Combat>().tinta = gameObject;
+                yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+                gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                nul.GetComponent<Combat>().initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+                nul.GetComponent<Combat>().tip_tinta = -1;
+            }
         }
-        StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
-        nul.GetComponent<Combat>().tip_tinta = -1;
     }
     void OnMouseOver()
     {
