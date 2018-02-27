@@ -193,8 +193,9 @@ public class Combatant:MonoBehaviour,ICombatant
                 nul.GetComponent<Combat>().tip_tinta = -1;
                 nul.GetComponent<Combat>().tinta = null;
                 nul.GetComponent<Combat>().pot_ataca = true;
+                nul.GetComponent<Combat>().ture.RemoveAt(nul.GetComponent<Combat>().IndiceCombatant(gameObject));
+                //Debug.Log(name + " a fost atacat de un aliat si a murit. Il scot din lista");
                 StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
-                gameObject.SetActive(false);
             }
             else
             {
