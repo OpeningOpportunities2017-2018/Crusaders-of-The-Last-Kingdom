@@ -23,6 +23,7 @@ public class Combatant:MonoBehaviour,ICombatant
 {
     Aliat a;
     Inamic i;
+    int viatainit=1;
     int tip=0;//Deocamdata 0-Aliat,1-Inamic
     public GameObject nul;//Obiectul cu scripturi
     void Start()
@@ -31,6 +32,7 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     public Combatant(Clasa c,int t=0,int viata=100,int speed=1,string nume="",bool mort=false)
     {
+        viatainit = viata;
         if (t == 0)
         {
             a = new Aliat();
@@ -57,6 +59,12 @@ public class Combatant:MonoBehaviour,ICombatant
             else
                 i.SetClasa(c);
         }
+    }
+    public int GetViataInit()
+    {
+        if (viatainit == 0)
+            return 1;
+        return viatainit;
     }
     public void SetTip(int t)
     {
@@ -174,7 +182,7 @@ public class Combatant:MonoBehaviour,ICombatant
         if(nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetTip()==0)
         {
             //if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].GetTinta() == nul.GetComponent<Combat>().tip_tinta && nul.GetComponent<Combat>().initiator != gameObject)
-            if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator != gameObject&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].GetTinta()==GetTip())
+            if (nul.GetComponent<Combat>().pot_ataca == true && !nul.GetComponent<InterfataUtilizator>().EsteVreunPanouActiv() && nul.GetComponent<Combat>().tip_tinta != -1 && nul.GetComponent<Combat>().initiator != gameObject)
             {
                 Debug.Log("Cineva a dat click pe " + name);
                 StartCoroutine(UltimulPas());
@@ -183,31 +191,21 @@ public class Combatant:MonoBehaviour,ICombatant
     }
     IEnumerator UltimulPas()
     {
-        if(GetViata()>0)
+        if(GetViata()>0&&nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetViata()>0)
         {
             nul.GetComponent<Combat>().pot_ataca = false;
             gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
             nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
-            if(GetViata()<=0)
-            {
-                nul.GetComponent<Combat>().tip_tinta = -1;
-                nul.GetComponent<Combat>().tinta = null;
-                nul.GetComponent<Combat>().pot_ataca = true;
-                nul.GetComponent<Combat>().ture.RemoveAt(nul.GetComponent<Combat>().IndiceCombatant(gameObject));
-                //Debug.Log(name + " a fost atacat de un aliat si a murit. Il scot din lista");
-                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
-            }
-            else
-            {
-                gameObject.GetComponent<ParticleSystem>().Play();
-                nul.GetComponent<Combat>().tinta = gameObject;
-                yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-                gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-                nul.GetComponent<Combat>().initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-                nul.GetComponent<Combat>().tip_tinta = -1;
-                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
-            }
+            //transform.GetChild(transform.childCount - 1).GetComponent<HealthBar>().fill = GetViata();
+            //transform.GetChild(transform.childCount - 1).GetComponent<HealthBar>().Updatare(GetViataInit());
+            gameObject.GetComponent<ParticleSystem>().Play();
+            nul.GetComponent<Combat>().tinta = gameObject;
+            yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+            gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+            nul.GetComponent<Combat>().initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
         }
+        StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+        nul.GetComponent<Combat>().tip_tinta = -1;
     }
     void OnMouseOver()
     {

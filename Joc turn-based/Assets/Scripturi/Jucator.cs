@@ -53,20 +53,20 @@ public class Jucator : MonoBehaviour
     void CreareCombatant(int tip,int prefab,string num,int viata,int speed,Clasa c,Vector3 poz)
     {
         GameObject temp;
-            if (tip == 0)
+        if (tip == 0)
+        {
+            temp = Instantiate(aliati[prefab], poz, Quaternion.identity);
+            if (num == null)
             {
-                temp = Instantiate(aliati[prefab], poz, Quaternion.identity);
-                if(num==null)
-                {
-                    num = c.GetNume() + " - Aliat";
-                }
-                else
-                    temp.name=num+" - Aliat";
+                num = c.GetNume() + " - Aliat";
             }
             else
-            {
-                temp = Instantiate(inamici[prefab], poz, Quaternion.identity);
-                temp.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                temp.name = num + " - Aliat";
+        }
+        else
+        {
+            temp = Instantiate(inamici[prefab], poz, Quaternion.identity);
+            temp.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             if (num == null)
             {
                 num = c.GetNume() + " - Inamic";
@@ -74,13 +74,13 @@ public class Jucator : MonoBehaviour
             else
                 temp.name = num + " - Inamic";
         }
-            temp.GetComponent<Combatant>().SetTip(tip);
-            temp.GetComponent<Combatant>().SetClasa(c);
-            temp.GetComponent<Combatant>().SetViata(viata);
-            temp.GetComponent<Combatant>().SetNume(num);
-            temp.GetComponent<Combatant>().SetSpeed(speed);
-            temp.GetComponent<Combatant>().SeteazaMort(false);
-            combatanti.Add(temp);
+        temp.GetComponent<Combatant>().SetTip(tip);
+        temp.GetComponent<Combatant>().SetClasa(c);
+        temp.GetComponent<Combatant>().SetViata(viata);
+        temp.GetComponent<Combatant>().SetNume(num);
+        temp.GetComponent<Combatant>().SetSpeed(speed);
+        temp.GetComponent<Combatant>().SeteazaMort(false);
+        combatanti.Add(temp);
     }
     void InitializarePozitii()
     {
@@ -95,7 +95,7 @@ public class Jucator : MonoBehaviour
         pozaliati[2, 1] = new Vector3(-44.1f, 18.13f, -12.1f);
         pozaliati[2, 2] = new Vector3(-62.92f, 17f, -3f);
         //Initializare pozitii inamici
-        pozinamici[0, 0] = new Vector3(66.87f, 68.11f, -9.3f);
+        pozinamici[0, 0] = new Vector3(66.87f, 68.11f, -22f);
         pozinamici[0, 1] = new Vector3(56.51f, 68.11f, -32.9f);
         pozinamici[0, 2] = new Vector3(38.8f, 68.11f, -7.9f);
         pozinamici[1, 0] = new Vector3(70.3f, 68.11f, -71.1f);
@@ -243,12 +243,27 @@ public class Abilitate
     public void FacCeEDeFacut(int tip,GameObject target)//Aici mai e de munca, dar se vor face cazuri particulare.(Cea mai mare minciuna ever)
     {
         //tip este tipul combatantului care initiaza atacul.
-        if (tip != target.GetComponent<Combatant>().GetTip())
+        if(tip_tinta==target.GetComponent<Combatant>().GetTip())
         {
-            target.GetComponent<Combatant>().GiveViata(-damage);
+            if (tip_tinta == 0)
+            {
+                if (tip != target.GetComponent<Combatant>().GetTip())
+                {
+                    target.GetComponent<Combatant>().GiveViata(-damage);
+                }
+                else
+                    target.GetComponent<Combatant>().GiveViata(damage);
+            }
+            else if (tip_tinta == 1)
+            {
+                if (tip != target.GetComponent<Combatant>().GetTip())
+                {
+                    target.GetComponent<Combatant>().GiveViata(damage);
+                }
+                else
+                    target.GetComponent<Combatant>().GiveViata(-damage);
+            }
         }
-        else
-            target.GetComponent<Combatant>().GiveViata(damage);
     }
     public void SetPictograma(Sprite pict)
     {

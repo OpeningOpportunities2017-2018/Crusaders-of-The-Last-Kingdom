@@ -396,6 +396,7 @@
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripturi\Aliat.cs" />
     <Compile Include="Assets\Scripturi\Audio.cs" />
+    <Compile Include="Assets\Scripturi\Cameră.cs" />
     <Compile Include="Assets\Scripturi\CameraScript.cs" />
     <Compile Include="Assets\Scripturi\ColorToPrefab.cs" />
     <Compile Include="Assets\Scripturi\Combat.cs" />
@@ -405,6 +406,7 @@
     <Compile Include="Assets\Scripturi\George\Calcul.cs" />
     <Compile Include="Assets\Scripturi\George\EMPTY.cs" />
     <Compile Include="Assets\Scripturi\George\STATUS.cs" />
+    <Compile Include="Assets\Scripturi\HealthBar.cs" />
     <Compile Include="Assets\Scripturi\Inamic.cs" />
     <Compile Include="Assets\Scripturi\InterfataUtilizator.cs" />
     <Compile Include="Assets\Scripturi\Jucator.cs" />

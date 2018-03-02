@@ -32,8 +32,6 @@ public class InterfataUtilizator : MonoBehaviour
       */
     public List<GameObject> butoane = new List<GameObject>();
     public List<GameObject> panouri = new List<GameObject>();
-    public GameObject stat_abil;
-    public string stat_abil_text = "Nume:{0}\nTip:{1}\nDamage:{2}";
     public Dictionary<string, string> engleza = new Dictionary<string, string>();//Aceste dictionare pot fi folosite pentru a traduce usor un text din romana in alta limba. De ex. engleza["Salut"]="Hello"
     int limba = 0, bindex;
     int indice_buton = 0;
