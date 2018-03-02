@@ -3320,12 +3320,6 @@ MonoBehaviour:
   panouri:
   - {fileID: 1055001952}
   - {fileID: 901344427}
-  stat_abil: {fileID: 807263908}
-  stat_abil_text: 'Nume:{0}
-
-    Tip:{1}
-
-    Damage:{2}'
 --- !u!114 &1354472533
 MonoBehaviour:
   m_ObjectHideFlags: 0

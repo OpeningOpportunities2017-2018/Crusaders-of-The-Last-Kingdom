@@ -85,8 +85,7 @@ public class Combat : MonoBehaviour
                 tinta.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
                 tinta.GetComponent<ParticleSystem>().Play();
                 initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].FacCeEDeFacut(1, tinta);
-                //tinta.transform.GetChild(tinta.transform.childCount - 1).GetComponent<HealthBar>().fill = (tinta.GetComponent<Combatant>().GetViata() / tinta.GetComponent<Combatant>().GetViataInit()) * 100;
-                //tinta.transform.GetChild(tinta.transform.childCount - 1).GetComponent<HealthBar>().Updatare(tinta.GetComponent<Combatant>().GetViataInit());
+                tinta.GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(tinta.GetComponent<Combatant>().GetViata(), tinta.GetComponent<Combatant>().GetViataInit());
                 AdaugaTura(temp);
                 yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
                 initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");

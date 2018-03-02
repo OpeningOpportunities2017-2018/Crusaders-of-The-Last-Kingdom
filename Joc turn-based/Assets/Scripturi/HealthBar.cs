@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections;
 public class HealthBar : MonoBehaviour
 {
-    public int fill;
     public GameObject prefab;
     public GameObject root;
+    public List<GameObject> parti;
     Vector3 poz;
     private void Awake()
     {
@@ -14,39 +13,25 @@ public class HealthBar : MonoBehaviour
     }
     void Start ()
     {
+        parti = new List<GameObject>();
         poz = root.transform.position;
 		for(int i=1;i<=100;i++)
         {
-            Instantiate(prefab,poz,root.transform.rotation,root.transform);
+            parti.Add(Instantiate(prefab,poz,root.transform.rotation,root.transform));
             poz.x += 0.125f;
         }
     }
-    public void Updatare(int init)
+    public void Updatare(int cur,int init)
     {
-        if(fill>0)
+        decimal umplere;
+        umplere = ((cur / (decimal)init) * 100);
+        Debug.Log((int)umplere + " "+cur+" "+init);
+        foreach(GameObject g in parti)
         {
-            for (int i = 0; i < fill; i++)
-            {
-                try
-                {
-                    root.transform.GetChild(i).GetComponent<Renderer>().material.color = Color.green;
-                }
-                catch
-                {
-                    Debug.Log(i + " " + fill);
-                }
-            }
-            for (int i = fill; i < 100; i++)
-            {
-                try
-                {
-                    root.transform.GetChild(i).GetComponent<Renderer>().material.color = Color.red;
-                }
-                catch
-                {
-                    Debug.Log(i + " " + fill);
-                }
-            }
+            if (parti.IndexOf(g) < (int)umplere)
+                g.GetComponent<Renderer>().material.color = Color.green;
+            else
+                g.GetComponent<Renderer>().material.color = Color.red;
         }
     }
 	void Update ()

@@ -53,6 +53,11 @@ public class Aliat:ICombatant
     public bool EsteMort()
     {
         return this.mort;
+
+    }
+    public void GiveViata(int v)
+    {
+        viata += v;
     }
     public void SeteazaMort(bool m)
     {

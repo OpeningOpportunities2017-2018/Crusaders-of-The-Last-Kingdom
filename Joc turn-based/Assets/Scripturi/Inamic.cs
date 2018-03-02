@@ -38,6 +38,10 @@ public class Inamic:ICombatant
     {
         this.speed = m;
     }
+    public void GiveViata(int v)
+    {
+        viata += v;
+    }
     public int GetSpeed()
     {
         return this.speed;

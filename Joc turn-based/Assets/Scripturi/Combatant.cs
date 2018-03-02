@@ -17,12 +17,14 @@ public interface ICombatant
     void SeteazaMort(bool m);
     void SetClasa(Clasa c);
     Clasa GetClasa();
+    void GiveViata(int v);
 }
 [System.Serializable]
 public class Combatant:MonoBehaviour,ICombatant
 {
     Aliat a;
     Inamic i;
+    public GameObject hbar;
     int viatainit=1;
     int tip=0;//Deocamdata 0-Aliat,1-Inamic
     public GameObject nul;//Obiectul cu scripturi
@@ -59,6 +61,7 @@ public class Combatant:MonoBehaviour,ICombatant
             else
                 i.SetClasa(c);
         }
+        viatainit=viata;
     }
     public int GetViataInit()
     {
@@ -84,6 +87,7 @@ public class Combatant:MonoBehaviour,ICombatant
             a.SetViata(v);
         else if (tip == 1)
             i.SetViata(v);
+        viatainit = v;
     }
     public void GiveViata(int v)
     {
@@ -94,7 +98,7 @@ public class Combatant:MonoBehaviour,ICombatant
                 if (a.GetViata() <= 0)
                     a.SeteazaMort(true);
                 else
-                    a.SetViata(a.GetViata() + v);
+                    a.GiveViata(v);
             }
         }
         else if (tip == 1)
@@ -104,7 +108,7 @@ public class Combatant:MonoBehaviour,ICombatant
                 if (i.GetViata() <= 0)
                     i.SeteazaMort(true);
                 else
-                    i.SetViata(i.GetViata() + v);
+                    i.GiveViata(v);
             }
         }
     }
@@ -196,8 +200,7 @@ public class Combatant:MonoBehaviour,ICombatant
             nul.GetComponent<Combat>().pot_ataca = false;
             gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
             nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
-            //transform.GetChild(transform.childCount - 1).GetComponent<HealthBar>().fill = GetViata();
-            //transform.GetChild(transform.childCount - 1).GetComponent<HealthBar>().Updatare(GetViataInit());
+            hbar.GetComponent<HealthBar>().Updatare(GetViata(), viatainit);
             gameObject.GetComponent<ParticleSystem>().Play();
             nul.GetComponent<Combat>().tinta = gameObject;
             yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);

@@ -396,7 +396,6 @@
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripturi\Aliat.cs" />
     <Compile Include="Assets\Scripturi\Audio.cs" />
-    <Compile Include="Assets\Scripturi\Cameră.cs" />
     <Compile Include="Assets\Scripturi\CameraScript.cs" />
     <Compile Include="Assets\Scripturi\ColorToPrefab.cs" />
     <Compile Include="Assets\Scripturi\Combat.cs" />

@@ -136,6 +136,7 @@ bb682ba95c07e796dda5d7a15bb8074b Mini Profiler.dll:kleberswf.tools.util.Keyboard
 9baafe3bf02e3e17bdab81bde83e1acd Mini Profiler.dll:kleberswf.tools.miniprofiler.MemoryValueProvider
 ac16949609d383f6470283fa5cfb1605 Mini Profiler.dll:kleberswf.tools.miniprofiler.MiniProfiler
 ab881fcd3864f32bd335ec0135720550 Assembly-CSharp.dll:.EMPTY
+7e164d73d2ec3918e9517d9b3d3906ec Assembly-CSharp.dll:.HealthBar
 84567b712558ad7edba93b0d0291c269 Assembly-CSharp.dll:.Jucator
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -164,13 +165,13 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 f671a42aea5f34fec6a4450a3668c615 Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingProfile
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-12bffe04504253d5babe55a1714eea31 Assembly-CSharp.dll:.Combatant
+86ce622d708dfcee0112f09ca208a192 Assembly-CSharp.dll:.Combatant
 fa2e9ec57ff8ab377a63804257178220 Assembly-CSharp.dll:.CameraScript
 6450fa39051318a6153f8a064ca9033a Assembly-CSharp.dll:coreElement.CoreElement
 475bc68786fc2ecffb9d41b73faf514c Assembly-CSharp.dll:.ReplaceSlotDisplay
 f5211229bcfbf8e592a62a8bd72fb0cb Assembly-CSharp.dll:.Calcul
 7c48d107a890047a5a27fb42f4d60c62 Assembly-CSharp.dll:.CursorCosmin
-e8f62b0458e682bde3a2a657343b1a99 Assembly-CSharp.dll:.InterfataUtilizator
+40d8b433e30603665013aeb24cc3d361 Assembly-CSharp.dll:.InterfataUtilizator
 24a7f71084fa11fc58e6324cd2444283 Assembly-CSharp.dll:.Manipulatori
 d9803232d0b34bfdda507b005afb10e2 Assembly-CSharp.dll:.CombatSimulator
 92ec000703f0be398e232421464690d9 Assembly-CSharp.dll:DragonBones.UnityBone
