@@ -205,10 +205,10 @@ public class Combatant:MonoBehaviour,ICombatant
             //Dupa atac
             if (GetViata()>0)
             {
-                GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(GetComponent<Combatant>().GetViata(), GetComponent<Combatant>().GetViataInit());
+                StartCoroutine(GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(GetComponent<Combatant>().GetViata(), GetComponent<Combatant>().GetViataInit()));
                 nul.GetComponent<Combat>().AdaugaTura(gameObject);
                 GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-                hbar.GetComponent<HealthBar>().Updatare(GetViata(), viatainit);
+                //StartCoroutine(hbar.GetComponent<HealthBar>().Updatare(GetViata(), viatainit));
                 gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
                 gameObject.GetComponent<ParticleSystem>().Play();
                 yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);

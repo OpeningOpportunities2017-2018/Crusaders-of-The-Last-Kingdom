@@ -117,7 +117,7 @@ public class Combat : MonoBehaviour
                     }
                     else
                     {
-                        tinta.GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(tinta.GetComponent<Combatant>().GetViata(), tinta.GetComponent<Combatant>().GetViataInit());
+                        StartCoroutine(tinta.GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(tinta.GetComponent<Combatant>().GetViata(), tinta.GetComponent<Combatant>().GetViataInit()));
                         AdaugaTura(temp);
                         tinta.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
                         yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);

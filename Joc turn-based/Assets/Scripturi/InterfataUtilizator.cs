@@ -26,6 +26,7 @@ public class InterfataUtilizator : MonoBehaviour
     /*De asemenea, scenele trebuie puse in ordine la build
      * 0 - Main Menu
      * 1 - Main
+     * 2 - Final
      */
      /*Ordinea limbilor este
       * romana
@@ -69,6 +70,20 @@ public class InterfataUtilizator : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
             else if(panouri[1].activeSelf)
+            {
+                Debug.Log("Nu se mai afiseaza optiunile");
+                panouri[1].SetActive(false);
+                panouri[0].SetActive(true);
+            }
+        }
+        else if(bindex==2)
+        {
+            if(panouri[0].activeSelf&&panouri[1].activeSelf==false)
+            {
+                Debug.Log("M-am intors in main menu.");
+                SceneManager.LoadScene(0);
+            }
+            else if (panouri[1].activeSelf)
             {
                 Debug.Log("Nu se mai afiseaza optiunile");
                 panouri[1].SetActive(false);
@@ -153,6 +168,14 @@ public class InterfataUtilizator : MonoBehaviour
                     Manipulatori.Swap(ref buton_selectat.GetComponent<Image>().sprite, ref buton_selectat.GetComponent<Button>().spriteState.pressedSprite);
                 }
                 */
+            }
+        }
+        else if(bindex==2)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Debug.Log("Am apasat tasta Escape");
+                panouri[0].SetActive(!panouri[0].activeSelf);
             }
         }
 	}

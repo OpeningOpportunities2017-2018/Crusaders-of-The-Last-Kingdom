@@ -3304,7 +3304,6 @@ MonoBehaviour:
   butoane:
   - {fileID: 1389647660}
   - {fileID: 157998566}
-  - {fileID: 0}
   - {fileID: 634193705}
   panouri:
   - {fileID: 1055001952}
@@ -3320,6 +3319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1010dc82127bdf442a313b06deb3c5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ture: []
   nul: {fileID: 1354472527}
   initiator: {fileID: 0}
   tinta: {fileID: 0}

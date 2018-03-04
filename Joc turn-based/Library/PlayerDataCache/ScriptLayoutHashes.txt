@@ -1,4 +1,4 @@
-Android
+WindowsStandalone
 SceneListBegin?
 Assets/Scene/Main Menu.unity
 Assets/Scene/Main.unity
