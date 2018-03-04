@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 using DragonBones;
+using UnityEngine.SceneManagement;
 //ICombatant te obliga si te face sa nu uiti ce functii ai de bagat, deci mai intai bagi aici antetul unei functii comune, si dup-aia o definesti
 public interface ICombatant 
 {
@@ -200,15 +201,48 @@ public class Combatant:MonoBehaviour,ICombatant
             nul.GetComponent<Combat>().pot_ataca = false;
             gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
             nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[nul.GetComponent<Combat>().indiceabilitate].FacCeEDeFacut(0, gameObject);
-            hbar.GetComponent<HealthBar>().Updatare(GetViata(), viatainit);
-            gameObject.GetComponent<ParticleSystem>().Play();
             nul.GetComponent<Combat>().tinta = gameObject;
-            yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-            gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+            //Dupa atac
+            if (GetViata()>0)
+            {
+                GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(GetComponent<Combatant>().GetViata(), GetComponent<Combatant>().GetViataInit());
+                nul.GetComponent<Combat>().AdaugaTura(gameObject);
+                GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                hbar.GetComponent<HealthBar>().Updatare(GetViata(), viatainit);
+                gameObject.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                gameObject.GetComponent<ParticleSystem>().Play();
+                yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+                nul.GetComponent<Combat>().initiator.GetComponent<ParticleSystem>().Stop();
+                gameObject.GetComponent<ParticleSystem>().Stop();
+                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+            }
             nul.GetComponent<Combat>().initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
         }
-        StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
-        nul.GetComponent<Combat>().tip_tinta = -1;
+        if(GetViata()<=0 && nul.GetComponent<Combat>().initiator.GetComponent<Combatant>().GetViata() > 0)
+        {
+            if (nul.GetComponent<Combat>().SuntTotiMorti(0))
+            {
+                nul.GetComponent<Combat>().DescarcaAbilitati();
+                SceneManager.LoadScene("Final");
+                Debug.Log("Infrangere");
+            }
+            else if (nul.GetComponent<Combat>().SuntTotiMorti(1))
+            {
+                nul.GetComponent<Combat>().DescarcaAbilitati();
+                SceneManager.LoadScene("Final");
+                Debug.Log("Victorie!");
+            }
+            else
+            {
+                gameObject.SetActive(true);
+                gameObject.GetComponent<ParticleSystem>().Stop();
+                nul.GetComponent<Combat>().initiator.GetComponent<ParticleSystem>().Stop();
+                yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+                StartCoroutine(nul.GetComponent<Combat>().UrmatorulCombatant());
+                nul.GetComponent<Combat>().tip_tinta = -1;
+                gameObject.SetActive(false);
+            }
+        }
     }
     void OnMouseOver()
     {

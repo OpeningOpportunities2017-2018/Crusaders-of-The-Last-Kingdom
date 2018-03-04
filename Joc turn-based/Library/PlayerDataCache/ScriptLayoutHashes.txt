@@ -1,7 +1,8 @@
-WindowsStandalone
+Android
 SceneListBegin?
 Assets/Scene/Main Menu.unity
 Assets/Scene/Main.unity
+Assets/Scene/Final.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -83,7 +84,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 3ecea0c2e43f5d97a17c441bfcf59a7d Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingBehaviour
-e5bc47a192564fbdbd519799795c322d Assembly-CSharp.dll:.Combat
+13b22e55fd157688971930b3a168f9c5 Assembly-CSharp.dll:.Combat
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Audio
 c0a7d51c9362c415b104d8da8cf7e657 Assembly-CSharp.dll:DragonBones.UnityUGUIDisplay
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset

@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using DragonBones;
+using UnityEngine.SceneManagement;
 public class Combat : MonoBehaviour
 {
-    public Queue<GameObject> ture;
+    public List<GameObject> ture;
     public GameObject nul;
     public GameObject initiator, tinta;//Cel care initiaza atacul si tinta atacului
     public int tip_tinta = -1,indiceabilitate=-1;//Astept playerul sa isi selecteze tinta? Nu? -1 Daca da, aliatul e 0, inamicul 1
@@ -20,93 +21,141 @@ public class Combat : MonoBehaviour
     public List<GameObject> slotabil;//Sloturile de abilitati
     void Awake()
     {
-        ture = new Queue<GameObject>();//Ordinea combatantilor la atac
+        ture = new List<GameObject>();//Ordinea combatantilor la atac
     }
     void Start()
     {
         InitializareTure();
         StartCoroutine(UrmatorulCombatant());
     }
-    void AdaugaTura(GameObject c)
+    public void AdaugaTura(GameObject c)
     {
-        ture.Enqueue(c);
+        ture.Add(c);
     }
     public IEnumerator UrmatorulCombatant()
     {
-        GameObject temp = ture.Dequeue();
-        pot_ataca = true;
-        if(tinta!=null)
-            tinta.GetComponent<ParticleSystem>().Stop();
-        initiator = temp;
-        //Am scos jucatorul din coada. Ma ocup de el
-        ture.LastOrDefault().GetComponent<ParticleSystem>().Stop();
-        temp.GetComponent<ParticleSystem>().Play();
-        obiect_upcoming.GetComponent<Text>().text=string.Format(text_upcoming, ture.Peek().GetComponent<Combatant>().GetNume());
-        //IncarcaAbilitati(temp);
-        if(initiator.GetComponent<Combatant>().GetViata()>0)
+        if (SuntTotiMorti(0))
         {
-            if (temp.GetComponent<Combatant>().GetTip() == 0)
-            {
-                IncarcaAbilitati(temp);
-                //M-am ocupat de el. Il adaug inapoi in coada
-                AdaugaTura(temp);
-            }
-            else
-            {
-                //Realizez aici atacul inamicului
-                int indiceabilitate = Manipulatori.rand.Next(0, temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati().Count);
-                pot_ataca = false;
-                //Debug.Log(indiceabilitate);
-                //Am generat o abilitate aleatorie. Acum vad care e tinta
-                DescarcaAbilitati();
-                if (temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetTinta() == 0)
-                {
-                    //Tinta este un aliat
-                    do
-                    {
-                        tinta = nul.GetComponent<Jucator>().combatanti[Manipulatori.rand.Next(0, nul.GetComponent<Jucator>().combatanti.Count)];
-                    }
-                    while (tinta.GetComponent<Combatant>().GetTip() != 0);
-                    Debug.Log("Inamicul " + initiator.GetComponent<Combatant>().GetNume() + " a atacat aliatul " + tinta.GetComponent<Combatant>().GetNume() + " cu abilitatea " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetNume() + " si damage " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetDamage());
-                    //Debug.Log(tinta.GetComponent<Combatant>().GetNume());
-                }
-                else
-                {
-                    //Tinta este un inamic
-                    do
-                    {
-                        tinta = nul.GetComponent<Jucator>().combatanti[Manipulatori.rand.Next(0, nul.GetComponent<Jucator>().combatanti.Count)];
-                    }
-                    while (tinta.GetComponent<Combatant>().GetTip() != 1);
-                    Debug.Log("Inamicul " + initiator.GetComponent<Combatant>().GetNume() + " a dat viata inamicului " + tinta.GetComponent<Combatant>().GetNume() + " cu abilitatea " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetNume() + " si damage " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetDamage());
-                    //Debug.Log(tinta.GetComponent<Combatant>().GetNume());
-                }
-                initiator.GetComponent<UnityArmatureComponent>().animation.Play("Attack", 1);
-                tinta.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
-                tinta.GetComponent<ParticleSystem>().Play();
-                initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].FacCeEDeFacut(1, tinta);
-                tinta.GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(tinta.GetComponent<Combatant>().GetViata(), tinta.GetComponent<Combatant>().GetViataInit());
-                AdaugaTura(temp);
-                yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-                initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-                tinta.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-                StartCoroutine(UrmatorulCombatant());
-            }
+            Debug.Log("Infrangere");
+            SceneManager.LoadScene("Final");
+        }
+        else if (SuntTotiMorti(1))
+        {
+            Debug.Log("Victorie!");
+            SceneManager.LoadScene("Final");
         }
         else
         {
-            Destroy(temp);
-            yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
-            //initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-            tinta.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
-            StartCoroutine(UrmatorulCombatant());
+            GameObject temp = ture[0];
+            ture.Remove(ture[0]);
+            pot_ataca = true;
+            if (tinta != null)
+                tinta.GetComponent<ParticleSystem>().Stop();
+            initiator = temp;
+            //Am scos jucatorul din coada. Ma ocup de el
+            ture.LastOrDefault().GetComponent<ParticleSystem>().Stop();
+            temp.GetComponent<ParticleSystem>().Play();
+            obiect_upcoming.GetComponent<Text>().text = string.Format(text_upcoming, ture.First().GetComponent<Combatant>().GetNume());
+            //IncarcaAbilitati(temp);
+            if (initiator.GetComponent<Combatant>().GetViata() > 0)
+            {
+                if (temp.GetComponent<Combatant>().GetTip() == 0)
+                {
+                    IncarcaAbilitati(temp);
+                    //M-am ocupat de el. Il adaug inapoi in coada
+                    AdaugaTura(temp);
+                }
+                else
+                {
+                    //Realizez aici atacul inamicului
+                    int indiceabilitate = Manipulatori.rand.Next(0, temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati().Count);
+                    pot_ataca = false;
+                    //Debug.Log(indiceabilitate);
+                    //Am generat o abilitate aleatorie. Acum vad care e tinta
+                    DescarcaAbilitati();
+                    if (temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetTinta() == 0)
+                    {
+                        //Tinta este un aliat
+                        do
+                        {
+                            tinta = nul.GetComponent<Jucator>().combatanti[Manipulatori.rand.Next(0, nul.GetComponent<Jucator>().combatanti.Count)];
+                        }
+                        while (tinta.GetComponent<Combatant>().GetTip() != 0);
+                        Debug.Log("Inamicul " + initiator.GetComponent<Combatant>().GetNume() + " a atacat aliatul " + tinta.GetComponent<Combatant>().GetNume() + " cu abilitatea " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetNume() + " si damage " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetDamage());
+                        //Debug.Log(tinta.GetComponent<Combatant>().GetNume());
+                    }
+                    else
+                    {
+                        //Tinta este un inamic
+                        do
+                        {
+                            tinta = nul.GetComponent<Jucator>().combatanti[Manipulatori.rand.Next(0, nul.GetComponent<Jucator>().combatanti.Count)];
+                        }
+                        while (tinta.GetComponent<Combatant>().GetTip() != 1);
+                        Debug.Log("Inamicul " + initiator.GetComponent<Combatant>().GetNume() + " a dat viata inamicului " + tinta.GetComponent<Combatant>().GetNume() + " cu abilitatea " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetNume() + " si damage " + temp.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].GetDamage());
+                        //Debug.Log(tinta.GetComponent<Combatant>().GetNume());
+                    }
+                    initiator.GetComponent<UnityArmatureComponent>().animation.Play("Attack", 1);
+                    tinta.GetComponent<UnityArmatureComponent>().animation.Play("Damaged", 1);
+                    tinta.GetComponent<ParticleSystem>().Play();
+                    initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabilitate].FacCeEDeFacut(1, tinta);
+                    if (tinta.GetComponent<Combatant>().GetViata() <= 0)
+                    {
+
+                        if (SuntTotiMorti(0))
+                        {
+                            Debug.Log("Infrangere");
+                            SceneManager.LoadScene("Final");
+                        }
+                        else if (SuntTotiMorti(1))
+                        {
+                            Debug.Log("Victorie!");
+                            SceneManager.LoadScene("Final");
+                        }
+                        else
+                            tinta.SetActive(false);
+                    }
+                    else
+                    {
+                        tinta.GetComponent<Combatant>().hbar.GetComponent<HealthBar>().Updatare(tinta.GetComponent<Combatant>().GetViata(), tinta.GetComponent<Combatant>().GetViataInit());
+                        AdaugaTura(temp);
+                        tinta.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                        yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+                    }
+                    initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                    StartCoroutine(UrmatorulCombatant());
+                }
+            }
+            else
+            {
+                if (SuntTotiMorti(0))
+                {
+                    DescarcaAbilitati();
+                    Debug.Log("Infrangere");
+                    SceneManager.LoadScene("Final");
+                }
+                else if (SuntTotiMorti(1))
+                {
+                    DescarcaAbilitati();
+                    Debug.Log("Victorie!");
+                    SceneManager.LoadScene("Final");
+                }
+                else
+                {
+                    temp.SetActive(false);
+                    //yield return new WaitForSeconds(nul.GetComponent<Manipulatori>().timp_intre_atacuri);
+                    //initiator.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                    //tinta.GetComponent<UnityArmatureComponent>().animation.Play("Idle");
+                    StartCoroutine(UrmatorulCombatant());
+                }
+            }
         }
     }
-    bool SuntTotiMorti(int tip)
+    public bool SuntTotiMorti(int tip)
     {
         foreach(GameObject g in ture)
         {
-            if (g.GetComponent<Combatant>().GetTip() == tip && g.GetComponent<Combatant>().EsteMort() == false)
+            if (g.GetComponent<Combatant>().GetTip() == tip && (g.GetComponent<Combatant>().EsteMort() == false||g.activeSelf))
                 return false;
         }
         return true;
@@ -144,9 +193,16 @@ public class Combat : MonoBehaviour
         {
             indiceabilitate = indiceabil;
             tip_tinta = initiator.GetComponent<Combatant>().GetClasa().ObtineAbilitati()[indiceabil].GetTinta();
+            if(initiator.GetComponent<Combatant>().GetTip()==1)
+            {
+                if (tip_tinta == 1)
+                    tip_tinta = 0;
+                else
+                    tip_tinta = 1;
+            }
         }
     }
-    void IncarcaAbilitati(GameObject comb)
+    public void IncarcaAbilitati(GameObject comb)
     {
         //Voi actualiza aici sloturile cu abilitati
         //Pentru inceput, ma asigur ca sunt toate oprite
@@ -160,7 +216,7 @@ public class Combat : MonoBehaviour
             slotabil[i].GetComponent<Image>().sprite = abilitati[i].GetPictograma();
         }
     }
-    void DescarcaAbilitati()
+    public void DescarcaAbilitati()
     {
         foreach (GameObject g in slotabil)
             g.SetActive(false);

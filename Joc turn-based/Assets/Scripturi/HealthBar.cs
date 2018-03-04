@@ -25,7 +25,7 @@ public class HealthBar : MonoBehaviour
     {
         decimal umplere;
         umplere = ((cur / (decimal)init) * 100);
-        Debug.Log((int)umplere + " "+cur+" "+init);
+        //Debug.Log((int)umplere + " "+cur+" "+init);
         foreach(GameObject g in parti)
         {
             if (parti.IndexOf(g) < (int)umplere)
